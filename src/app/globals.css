@@ -1,8 +1,12 @@
-@import "tailwindcss";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-inter: 'Inter', sans-serif;
+  --font-oswald: 'Oswald', sans-serif;
+  --font-alumni: 'Alumni Sans', sans-serif;
 }
 
 @theme inline {
@@ -22,5 +26,52 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.gradient-text {
+  font-family: var(--font-alumni);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: clamp(50px, 20vw, 300px);
+  line-height: clamp(30px, 20vw, 250px);
+  white-space: nowrap;
+  user-select: none;
+  --gradient-angle: 90deg;
+  background: linear-gradient(
+    var(--gradient-angle),
+    #3a3a3a 0%,
+    #8a8a3a 20%,
+    #f9ff00 30%,
+    #ffed4e 40%,
+    #fefff8 50%,
+    #ffed4e 60%,
+    #f9ff00 70%,
+    #8a8a3a 80%,
+    #3a3a3a 100%
+  );
+  background-size: 120%;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientFlow 3s linear infinite alternate,
+    angleChange 6s ease-in-out infinite alternate;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 10%;
+  }
+  100% {
+    background-position: 250%;
+  }
+}
+
+@keyframes angleChange {
+  0% {
+    --gradient-angle: 90deg;
+  }
+  100% {
+    --gradient-angle: 450deg;
+  }
 }
