@@ -1,12 +1,64 @@
+import { scale } from 'framer-motion';
+import Image from 'next/image';
 interface ButtonProps {
-  text: string;
+  text?: string;
+  side?: 'right' | 'left';
+  saleBtn?: boolean;
 }
 
-export default function Button({ text }: ButtonProps) {
+export default function Button({
+  text,
+  side = 'right',
+  saleBtn = false,
+}: ButtonProps) {
   return (
-    <div className="button-container">
-      <div className="gradient-border"></div>
-      <button className="animated-button">{text}</button>
+    <div className={`button-container ${saleBtn ? 'sale' : ''}`}>
+      <div className={`gradient-border"`}></div>
+      <button
+        className={`animated-button ${
+          side === 'left' ? 'left-side' : 'right-side'
+        } `}
+      >
+        {side === 'left' && (
+          <span className="arow">
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M16.0688 8L20.1786 11.7099L20.5 12L20.1786 12.2901L18.9725 13.3788L18.3667 12.832L19.2885 12L15.5 8.58022L16.0688 8ZM16.7061 14.331L17.3119 14.8779L16.0688 16L15.5 15.4198L16.7061 14.331Z"
+                fill="currentColor"
+              />
+              <path d="M19.5 12H4.5" stroke="currentColor" />
+            </svg>
+          </span>
+        )}
+        {text && <span className={`button-text`}>{text}</span>}
+        {side === 'right' && (
+          <span className="arow">
+            <svg
+              width="25"
+              height="24"
+              viewBox="0 0 25 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M16.0688 8L20.1786 11.7099L20.5 12L20.1786 12.2901L18.9725 13.3788L18.3667 12.832L19.2885 12L15.5 8.58022L16.0688 8ZM16.7061 14.331L17.3119 14.8779L16.0688 16L15.5 15.4198L16.7061 14.331Z"
+                fill="currentColor"
+              />
+              <path d="M19.5 12H4.5" stroke="currentColor" />
+            </svg>
+          </span>
+        )}
+      </button>
     </div>
   );
 }

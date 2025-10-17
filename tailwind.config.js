@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         primary: {
           yellow: '#F9FF00',
+          red: '#F9452D',
         },
         bg: {
           black: '#0A0A0A',
@@ -21,13 +22,17 @@ module.exports = {
         },
         neutral: {
           30: '#7A7A7A',
+          10: '#DEDEDE',
         },
         text: {
           light: '#FEFFF8',
+          gray: '#A9A9A9',
         },
       },
       fontSize: {
         sup: ['14px', '20px'],
+        h2: ['54px', '100%'],
+        h3: ['28px', '100%'],
       },
       keyframes: {
         'line-slide': {
