@@ -1,25 +1,22 @@
-"use client";
-import { useState, useRef, useEffect } from "react";
-import Card, { CardProps } from "./Card";
+'use client';
+import { useState, useRef, useEffect } from 'react';
+import Card, { CardProps } from './Card';
 
 const prices: CardProps[] = [
   {
-    title: "Starter",
-    subTitle: "Для тестів Offers/Geo та швидких гіпотез",
-    price: (
-      <div className="flex items-end gap-1 text-[28px] font-bold leading-none">
-        <span>$1600</span>
-        <span className="text-sm opacity-70">/додаток</span>
-      </div>
+    title: 'Starter',
+    subTitle: (
+      <>
+        Для тестів Offers/Geo <br /> та швидких гіпотез
+      </>
     ),
-    text: "Заміна у разі технічної помилки протягом 72 годин",
+    price: '$1600',
+    text: 'Заміна у разі технічної помилки протягом 72 годин',
     list: (
-      <div className="space-y-2">
-        <p className="font-semibold">Що входить:</p>
-        <ul className="list-disc list-inside text-sm opacity-80 space-y-1">
-          <li className="flex items-center gap-[8px]">
-            <span
-              className={`
+      <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
+        <li className="flex items-start  gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -27,12 +24,12 @@ const prices: CardProps[] = [
       after:w-[2px] after:h-[9px]
       before:bg-red-500 after:bg-red-500
     `}
-            ></span>
-            Інтеграція у трекер (Keitaro / Binom)
-          </li>
-          <li className="flex items-center gap-[8px]">
-            <span
-              className={`
+          ></span>
+          Інтеграція у трекер (Keitaro / Binom)
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -40,13 +37,13 @@ const prices: CardProps[] = [
       after:w-[2px] after:h-[9px]
       before:bg-red-500 after:bg-red-500
     `}
-            ></span>
-            Підтримка при запуску
-          </li>
+          ></span>
+          Підтримка при запуску
+        </li>
 
-          <li className="flex items-center gap-[8px] line-through">
-            <span
-              className={`
+        <li className="flex items-start gap-[8px] line-through text-text-gray">
+          <span
+            className={`mt-[4px] shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -55,12 +52,12 @@ const prices: CardProps[] = [
           before:bg-gray-400 after:bg-gray-400
           
     `}
-            ></span>
-            Вбудовані пуші
-          </li>
-          <li className="flex items-center gap-[8px] line-through">
-            <span
-              className={`
+          ></span>
+          Вбудовані пуші
+        </li>
+        <li className="flex items-start gap-[8px] line-through text-text-gray">
+          <span
+            className={`mt-[4px] shrink-0 shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -68,12 +65,12 @@ const prices: CardProps[] = [
       after:w-[2px] after:h-[9px]
       before:bg-gray-400 after:bg-gray-400
     `}
-            ></span>
-            Клоака
-          </li>
-          <li className="flex items-center gap-[8px] line-through">
-            <span
-              className={`
+          ></span>
+          Клоака
+        </li>
+        <li className="flex items-start gap-[8px] line-through text-text-gray">
+          <span
+            className={`mt-[4px] shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -82,70 +79,253 @@ const prices: CardProps[] = [
           before:bg-gray-400 after:bg-gray-400
       
     `}
-            ></span>
-            Підключення платних сорсів
-          </li>
-        </ul>
-      </div>
+          ></span>
+          Підключення платних сорсів
+        </li>
+      </ul>
     ),
-    pay: "Оплата при запуску",
+    pay: 'Оплата при запуску',
   },
   {
-    title: "Pro",
+    title: 'Pro',
     titleCard: (
       <span className="py-[4px] px-[12px] bg-bg-red rounded-[4px] text-primary-red text-[12px] leading-[20px]">
         Популярний вибір
       </span>
     ),
-    subTitle: "Для стабільних зв’язок та команд",
-    price: (
-      <div className="flex items-end gap-1 text-[28px] font-bold leading-none text-[#9cff70]">
-        <span>$2600</span>
-        <span className="text-sm opacity-70">/додаток</span>
-      </div>
-    ),
-    text: "Підтримка 24/7, оновлення та додаткові фічі",
+    subTitle: 'Для команд з обсягами та кастомною логікою',
+    price: '$2500',
+    text: 'заміна при бані 5 днів або до 3k інсталів',
     list: (
-      <div className="space-y-2">
-        <p className="font-semibold">Що входить:</p>
-        <ul className="list-disc list-inside text-sm opacity-80 space-y-1">
-          <li>Усе зі Starter</li>
-          <li>Персональний менеджер</li>
-          <li>Тестові додатки</li>
-          <li>Регулярні оновлення</li>
-        </ul>
-      </div>
+      <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Будь-яке наповнення за ТЗ (казино, спорт, слоти, ігри)
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Інтеграція будь-якого трекера
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Підключення FB Ads, Google UAC, Unity, Moloco, in-app
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Вбудовані пуші
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Клоака
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Гарантія до 3k інсталів / 5 днів
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Інтеграція MMP (Adjust/AppsFlyer)
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Атрибуція під Facebook
+        </li>
+        <li className="flex items-start gap-[8px] line-through text-text-gray">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+          before:bg-gray-400 after:bg-gray-400
+          
+    `}
+          ></span>
+          Кастомний WebView / Chrome Custom Tabs
+        </li>
+      </ul>
     ),
-    pay: "Передплата на місяць",
+    pay: '50% передоплата на старті  50% після передачі',
   },
   {
-    title: "Max",
+    title: 'Max',
     titleCard: (
       <span className="py-[4px] px-[12px] bg-primary-yellow rounded-[4px] text-bg-black text-[12px] leading-[20px]">
         Premium
       </span>
     ),
-
-    subTitle: "Для великих команд та постійних запусків",
-    price: (
-      <div className="flex items-end gap-1 text-[28px] font-bold leading-none text-[#ffd166]">
-        <span>$4200</span>
-        <span className="text-sm opacity-70">/додаток</span>
-      </div>
-    ),
-    text: "Повна кастомізація під ваші задачі",
+    subTitle: 'Для команд з обсягами та кастомною логікою',
+    price: '$2800',
+    text: '1 безкоштовна заміна протягом 7 днів',
     list: (
-      <div className="space-y-2">
-        <p className="font-semibold">Що входить:</p>
-        <ul className="list-disc list-inside text-sm opacity-80 space-y-1">
-          <li>Усе з Pro</li>
-          <li>Преміум підтримка</li>
-          <li>Сервера під ключ</li>
-          <li>Необмежена кількість оновлень</li>
-        </ul>
-      </div>
+      <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Все що у тарифах вище
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Пріоритетна підтримка • швидка реалізація
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Більш сіра тематика додатків
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Розширена антибан-оптимізація збірки
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Кастомний WebView / Chrome Custom Tabs • Гнучка адаптація під
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Безкоштовний ресбір при зміні оффера (1 раз)
+        </li>
+        <li className="flex items-start gap-[8px]">
+          <span
+            className={`mt-[4px] shrink-0
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+          ></span>
+          Готові інструкції для впровадження
+        </li>
+      </ul>
     ),
-    pay: "Оплата по контракту",
+    pay: '50% передоплата на старті  50% після передачі',
   },
 ];
 export default function PricesCards() {

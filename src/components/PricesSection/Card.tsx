@@ -1,10 +1,10 @@
-import Button from "../Button/Button";
+import Button from '../Button/Button';
 
 export interface CardProps {
   title: string;
   titleCard?: React.ReactNode;
-  subTitle: string;
-  price: React.ReactNode;
+  subTitle: React.ReactNode;
+  price: string;
   text: string;
   list: React.ReactNode;
   pay: string;
@@ -34,32 +34,52 @@ export default function Card({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`card flex flex-col gap-[24px] h-[850px]
+      className={`card flex flex-col items-start gap-[24px] h-[850px]
         p-[40px] rounded-[16px] transition-all duration-500 cursor-pointer text-reg text-text-gray
         hover:scale-105
         group
-        ${active ? "active " : ""}
+        ${active ? 'active ' : ''}
         hover:text-black
-        ${isUnderBg ? "text-black" : "text-text-gray"}
+        ${isUnderBg ? 'text-black' : 'text-text-gray'}
       `}
     >
-      <div>
+      <div className="flex flex-col gap-[12px]">
         <div className="flex items-center gap-[12px] ">
-          <h4 className="text-h3 font-bold">{title}</h4>
+          <h4
+            className={` ${
+              isUnderBg ? 'text-black' : 'text-neutral-10'
+            } text-h3 font-bold`}
+          >
+            {title}
+          </h4>
           {titleCard}
         </div>
-        <p className="text-lg opacity-80">{subTitle}</p>
+        <p className="text-reg">{subTitle}</p>
       </div>
 
-      <div className="mt-3">{price}</div>
+      <div className="flex items-start text-[48px] font-bold transition-all duration-500">
+        <span
+          className={`block leading-none ${
+            isUnderBg ? 'text-bg-black' : 'text-primary-yellow'
+          }`}
+        >
+          {price}
+        </span>
+        <span className="ml-[9px] text-[14px] leading-none text-text-gray">
+          /додаток
+        </span>
+      </div>
 
-      <Button saleBtn={!!active} text={active ? "Залишити заявку" : ""} />
+      <Button saleBtn={!!active} text={active ? 'Залишити заявку' : ''} />
 
-      <p className="mt-3">{text}</p>
+      <p className="">{text}</p>
 
-      <div className="mt-4">{list}</div>
+      <div className="">
+        <p className="font-medium mb-[22px]">Що входить:</p>
+        {list}
+      </div>
 
-      <div className="mt-auto  font-semibold text-primary">{pay}</div>
+      <div className="mt-auto">{pay}</div>
     </div>
   );
 }

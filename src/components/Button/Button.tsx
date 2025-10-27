@@ -1,5 +1,7 @@
 import { scale } from 'framer-motion';
 import Image from 'next/image';
+import './button.css';
+
 interface ButtonProps {
   text?: string;
   side?: 'right' | 'left';
@@ -13,7 +15,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <div className={`button-container ${saleBtn ? 'sale' : ''}`}>
-      <div className={`gradient-border"`}></div>
+      <div className={`gradient-border`}></div>
       <button
         className={`animated-button ${
           side === 'left' ? 'left-side' : 'right-side'

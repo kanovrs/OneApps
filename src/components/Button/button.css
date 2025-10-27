@@ -1,0 +1,175 @@
+.button-container {
+  position: relative;
+  display: inline-block;
+  margin: 1px;
+}
+
+.gradient-border {
+  position: absolute;
+  inset: -1px;
+  border-radius: 17px;
+  z-index: 0;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -150%;
+  width: 400%;
+  height: 400%;
+  transition: all 0.5s ease-in-out;
+  background: conic-gradient(
+    from 0deg,
+    #141414,
+    #141414,
+    #141414,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.8),
+    #141414,
+    #141414,
+    #141414,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.8),
+    #141414,
+    #141414,
+    #141414
+  );
+  animation: rotate 6s linear infinite;
+}
+
+.sale .animated-button {
+  background-color: #f9452d;
+  color: #fefff8;
+}
+
+.sale .gradient-border::before {
+  background: #f9452d;
+  transform: none;
+  animation: none;
+}
+
+.animated-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.5s ease-in-out;
+  background: #000;
+  border-radius: 16px;
+  padding: 12px 20px;
+  color: white;
+  font-size: 18px;
+  line-height: 26px;
+  cursor: pointer;
+  border: none;
+  z-index: 1;
+  overflow: hidden;
+  box-shadow: 0px 50px 30px -2.5px rgba(0, 0, 0, 0.13),
+    0px 27.48px 16.49px -2.19px rgba(0, 0, 0, 0.13),
+    0px 15.96px 9.57px -1.88px rgba(0, 0, 0, 0.13),
+    0px 9.75px 5.85px -1.56px rgba(0, 0, 0, 0.13),
+    0px 6.04px 3.62px -1.25px rgba(0, 0, 0, 0.13),
+    0px 3.63px 2.18px -0.94px rgba(0, 0, 0, 0.13),
+    0px 1.99px 1.19px -0.63px rgba(0, 0, 0, 0.13),
+    0px 0.84px 0.5px -0.31px rgba(0, 0, 0, 0.13),
+    0px 0px 20px 1.64px rgba(255, 255, 255, 0.15) inset;
+}
+
+.animated-button.left-side {
+  padding-left: 6px;
+}
+
+.animated-button.right-side {
+  padding-right: 6px;
+}
+
+/* --- Arrow --- */
+.animated-button .arow {
+  background: #2a2a2a;
+  padding: 8px 20.5px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 7px 15px 0px rgba(0, 0, 0, 0.25),
+    8px 8px 15px 0px rgba(60, 60, 60, 0.25) inset;
+  transition: all 0.5s ease-in-out;
+  color: #fefff8;
+}
+
+.sale .arow {
+  background: #f9452d;
+  box-shadow: 0px 7px 15px 0px #00000040, 8px 8px 15px 0px #f13e27 inset;
+}
+
+.button-container svg {
+  transition: all 0.5s ease-in-out;
+}
+
+.button-container.sale svg {
+  transform: rotate(-30deg);
+}
+
+.button-container.sale:hover .arow,
+.button-container.sale:active .arow {
+  background-color: #f9452d;
+  color: #fefff8;
+}
+
+.button-container:hover .animated-button,
+.button-container:active .animated-button {
+  background-color: #f9ff00;
+  color: #242424;
+}
+
+.button-container:hover .arow,
+.button-container:active .arow {
+  background-color: #f9ff00;
+  color: #242424;
+}
+
+.button-container.sale:hover .animated-button,
+.button-container.sale:active .animated-button {
+  background-color: #f9452d;
+  color: #fefff8;
+}
+
+.button-container:hover svg,
+.button-container:active svg {
+  transform: rotate(-30deg);
+}
+
+.button-container:hover .gradient-border::before,
+.button-container:active .gradient-border::before {
+  background: #e4e84d;
+}
+
+.button-container.sale:hover .gradient-border::before,
+.button-container.sale:active .gradient-border::before {
+  background: #f9452d;
+}
+
+.button-container.sale .arow,
+.button-container.sale .button-text {
+  transition: all 0.5s ease-in-out;
+}
+
+.button-container.sale:hover .arow {
+  transform: translateX(-265%);
+}
+
+.button-container.sale:hover .button-text {
+  transform: translateX(45%);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
