@@ -79,7 +79,7 @@ export default function Card({
         {list}
       </div>
 
-      <div className="mt-auto">{pay}</div>
+      <div className="mt-auto text-[12px]">{pay}</div>
     </div>
   );
 }
