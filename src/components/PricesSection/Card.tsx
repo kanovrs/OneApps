@@ -1,5 +1,4 @@
-import React, { act } from 'react';
-import Button from '../Button/Button';
+import Button from "../Button/Button";
 
 export interface CardProps {
   title: string;
@@ -10,6 +9,7 @@ export interface CardProps {
   list: React.ReactNode;
   pay: string;
   active?: boolean;
+  isUnderBg?: boolean;
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -24,6 +24,7 @@ export default function Card({
   list,
   pay,
   active,
+  isUnderBg,
   onClick,
   onMouseEnter,
   onMouseLeave,
@@ -33,16 +34,18 @@ export default function Card({
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className={`
-        p-[40px] rounded-2xl transition-all duration-500 cursor-pointer text-text-gray
+      className={`card flex flex-col gap-[24px] h-[850px]
+        p-[40px] rounded-[16px] transition-all duration-500 cursor-pointer text-reg text-text-gray
         hover:scale-105
         group
-        ${active ? 'active' : ''}
+        ${active ? "active " : ""}
+        hover:text-black
+        ${isUnderBg ? "text-black" : "text-text-gray"}
       `}
     >
       <div>
-        <div className="flex items-center gap-[12px]">
-          <h4>{title}</h4>
+        <div className="flex items-center gap-[12px] ">
+          <h4 className="text-h3 font-bold">{title}</h4>
           {titleCard}
         </div>
         <p className="text-lg opacity-80">{subTitle}</p>
@@ -50,13 +53,13 @@ export default function Card({
 
       <div className="mt-3">{price}</div>
 
-      <Button saleBtn={!!active} text={active ? 'Залишити заявку' : ''} />
+      <Button saleBtn={!!active} text={active ? "Залишити заявку" : ""} />
 
       <p className="mt-3">{text}</p>
 
       <div className="mt-4">{list}</div>
 
-      <div className="mt-6 text-right font-semibold text-primary">{pay}</div>
+      <div className="mt-auto  font-semibold text-primary">{pay}</div>
     </div>
   );
 }

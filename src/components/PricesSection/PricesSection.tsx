@@ -1,5 +1,6 @@
-import Tag from '../Tag';
-import PricesCards from './PricesCards';
+import Tag from "../Tag";
+import PricesCards from "./PricesCards";
+import ProcessBlock from "./ProcessBlock";
 export default function PricesSection() {
   return (
     <section className="mt-[180px]">
@@ -16,6 +17,7 @@ export default function PricesSection() {
       <div className="">
         <PricesCards />
       </div>
+      <ProcessBlock />
     </section>
   );
 }

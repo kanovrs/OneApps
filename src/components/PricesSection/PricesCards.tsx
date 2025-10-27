@@ -1,47 +1,110 @@
-'use client';
-import { useState, useRef, useEffect } from 'react';
-import Card, { CardProps } from './Card';
+"use client";
+import { useState, useRef, useEffect } from "react";
+import Card, { CardProps } from "./Card";
 
 const prices: CardProps[] = [
   {
-    title: 'Starter',
-    subTitle: 'Для тестів Offers/Geo та швидких гіпотез',
+    title: "Starter",
+    subTitle: "Для тестів Offers/Geo та швидких гіпотез",
     price: (
       <div className="flex items-end gap-1 text-[28px] font-bold leading-none">
         <span>$1600</span>
         <span className="text-sm opacity-70">/додаток</span>
       </div>
     ),
-    text: 'Заміна у разі технічної помилки протягом 72 годин',
+    text: "Заміна у разі технічної помилки протягом 72 годин",
     list: (
       <div className="space-y-2">
         <p className="font-semibold">Що входить:</p>
         <ul className="list-disc list-inside text-sm opacity-80 space-y-1">
-          <li>Інтеграція у трекер (Keitaro / Binom)</li>
-          <li>Підтримка при запуску</li>
-          <li>Вбудовані пуші</li>
-          <li>Клоака</li>
-          <li>Підключення платних сорсів</li>
+          <li className="flex items-center gap-[8px]">
+            <span
+              className={`
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+            ></span>
+            Інтеграція у трекер (Keitaro / Binom)
+          </li>
+          <li className="flex items-center gap-[8px]">
+            <span
+              className={`
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-red-500 after:bg-red-500
+    `}
+            ></span>
+            Підтримка при запуску
+          </li>
+
+          <li className="flex items-center gap-[8px] line-through">
+            <span
+              className={`
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+          before:bg-gray-400 after:bg-gray-400
+          
+    `}
+            ></span>
+            Вбудовані пуші
+          </li>
+          <li className="flex items-center gap-[8px] line-through">
+            <span
+              className={`
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+      before:bg-gray-400 after:bg-gray-400
+    `}
+            ></span>
+            Клоака
+          </li>
+          <li className="flex items-center gap-[8px] line-through">
+            <span
+              className={`
+      relative w-[16px] h-[16px] 
+      before:content-[''] before:absolute before:top-[3px] before:right-[4px]
+      before:w-[9px] before:h-[2px]
+      after:content-[''] after:absolute after:top-[3px] after:right-[4px]
+      after:w-[2px] after:h-[9px]
+          before:bg-gray-400 after:bg-gray-400
+      
+    `}
+            ></span>
+            Підключення платних сорсів
+          </li>
         </ul>
       </div>
     ),
-    pay: 'Оплата при запуску',
+    pay: "Оплата при запуску",
   },
   {
-    title: 'Pro',
+    title: "Pro",
     titleCard: (
       <span className="py-[4px] px-[12px] bg-bg-red rounded-[4px] text-primary-red text-[12px] leading-[20px]">
         Популярний вибір
       </span>
     ),
-    subTitle: 'Для стабільних зв’язок та команд',
+    subTitle: "Для стабільних зв’язок та команд",
     price: (
       <div className="flex items-end gap-1 text-[28px] font-bold leading-none text-[#9cff70]">
         <span>$2600</span>
         <span className="text-sm opacity-70">/додаток</span>
       </div>
     ),
-    text: 'Підтримка 24/7, оновлення та додаткові фічі',
+    text: "Підтримка 24/7, оновлення та додаткові фічі",
     list: (
       <div className="space-y-2">
         <p className="font-semibold">Що входить:</p>
@@ -53,24 +116,24 @@ const prices: CardProps[] = [
         </ul>
       </div>
     ),
-    pay: 'Передплата на місяць',
+    pay: "Передплата на місяць",
   },
   {
-    title: 'Max',
+    title: "Max",
     titleCard: (
       <span className="py-[4px] px-[12px] bg-primary-yellow rounded-[4px] text-bg-black text-[12px] leading-[20px]">
         Premium
       </span>
     ),
 
-    subTitle: 'Для великих команд та постійних запусків',
+    subTitle: "Для великих команд та постійних запусків",
     price: (
       <div className="flex items-end gap-1 text-[28px] font-bold leading-none text-[#ffd166]">
         <span>$4200</span>
         <span className="text-sm opacity-70">/додаток</span>
       </div>
     ),
-    text: 'Повна кастомізація під ваші задачі',
+    text: "Повна кастомізація під ваші задачі",
     list: (
       <div className="space-y-2">
         <p className="font-semibold">Що входить:</p>
@@ -82,7 +145,7 @@ const prices: CardProps[] = [
         </ul>
       </div>
     ),
-    pay: 'Оплата по контракту',
+    pay: "Оплата по контракту",
   },
 ];
 export default function PricesCards() {
@@ -115,6 +178,7 @@ export default function PricesCards() {
       updateBg(active);
     }
   }, [hoverActive]);
+  const bgIndex = hoverActive !== null ? hoverActive : active;
 
   return (
     <div className="relative mt-[64px] bg-bg-black80 p-[50px] rounded-[24px] overflow-hidden">
@@ -134,6 +198,7 @@ export default function PricesCards() {
             key={i}
             {...price}
             active={active === i}
+            isUnderBg={bgIndex === i}
             onClick={() => setActive(i)}
             onMouseEnter={() => setHoverActive(i)}
             onMouseLeave={() => setHoverActive(null)}
