@@ -11,7 +11,6 @@ export default function Header() {
       </div>
 
       <div className="tg-btn flex">
-        {/* !!! добавляем <a> с классом group, чтобы hover реально срабатывал */}
         <Link
           href="/"
           className="flex gap-[12px] items-center relative overflow-hidden group"

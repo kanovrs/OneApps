@@ -19,21 +19,17 @@ const screens = [
 export default function ScreensSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  // отслеживаем скролл внутри секции
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end end'],
   });
 
   return (
-    // Высокая секция для скролла
     <section
       ref={sectionRef}
       className="relative h-[300vh] bg-[#0a0a0a] mt-[150px]"
     >
-      {/* sticky контейнер */}
       <div className="sticky top-0 h-screen flex items-center justify-center overflow-visible">
-        {/* затемнения */}
         <div
           className="absolute inset-y-0 left-0 w-[15%] pointer-events-none z-[60] left-fade"
           style={{

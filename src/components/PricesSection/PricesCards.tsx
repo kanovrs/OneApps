@@ -362,13 +362,11 @@ export default function PricesCards() {
 
   return (
     <div className="relative mt-[64px] bg-bg-black80 p-[50px] rounded-[24px] overflow-hidden">
-      {/* Фон за активной карточкой */}
       <div
         className="absolute top-[50px] left-[50px] rounded-[20px] bg-white transition-all duration-500 ease-[cubic-bezier(0.45,0,0.55,1)]"
         style={bgStyle}
       />
 
-      {/* Сетка карточек */}
       <div
         ref={containerRef}
         className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-[20px]"

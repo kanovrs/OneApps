@@ -1,6 +1,3 @@
-// export default function Title() {
-//   return <h1 className="gradient-text">One Apps</h1>;
-// }
 export default function Title() {
   return (
     <div className="w-[860px]">

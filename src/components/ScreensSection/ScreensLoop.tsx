@@ -4,9 +4,8 @@ import { useEffect, useState } from 'react';
 
 type Props = { images: string[]; speed?: number };
 
-// Ширины в px для контейнера 1285px
 const slotWidthsPx = [85, 112, 133, 133, 133, 133, 112, 85];
-const GAP_PX = 51; // промежуток между слотами в px
+const GAP_PX = 51;
 const CONTAINER_MAX_WIDTH = 1285;
 
 export default function ScreensLoop({ images, speed = 3000 }: Props) {
@@ -30,20 +29,17 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
   const getSlotStyle = (index: number) => {
     const centerIndex = Math.floor(slotWidthsPx.length / 2);
 
-    // Считаем позицию слева в px
     let leftPosition = 0;
     for (let i = 0; i < index; i++) {
       leftPosition += slotWidthsPx[i] + GAP_PX;
     }
 
-    // Центрируем всю композицию
     const totalWidth =
       slotWidthsPx.reduce((a, b) => a + b, 0) +
       GAP_PX * (slotWidthsPx.length - 1);
     const centerOffset = (CONTAINER_MAX_WIDTH - totalWidth) / 2;
     leftPosition += centerOffset;
 
-    // Конвертируем в проценты
     const leftPercent = (leftPosition / CONTAINER_MAX_WIDTH) * 100;
     const widthPercent = (slotWidthsPx[index] / CONTAINER_MAX_WIDTH) * 100;
     const heightPercent =

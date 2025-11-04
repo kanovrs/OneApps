@@ -43,7 +43,7 @@ export default function HeroSection() {
               className="w-1/2"
               transition={{
                 duration: 0.6,
-                delay: (index + 1) * 0.4, // 0.4s, 0.8s, ...
+                delay: (index + 1) * 0.4,
                 ease: 'easeOut',
               }}
             >
