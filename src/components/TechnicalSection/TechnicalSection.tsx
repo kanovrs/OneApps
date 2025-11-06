@@ -61,10 +61,10 @@ export default function TechnicalSection() {
   const [activeItem, setActiveItem] = useState<string | number | null>(
     sections[0].items[0].id
   );
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [, setIsAnimating] = useState(false);
 
   const handleSectionChange = async (index: number) => {
-    if (index === activeSection || isAnimating) return;
+    if (index === activeSection) return;
 
     setIsAnimating(true);
     await new Promise((resolve) => setTimeout(resolve, 100));

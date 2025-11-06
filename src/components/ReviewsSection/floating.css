@@ -1,0 +1,96 @@
+@keyframes floating-3d {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(2px, -3px, 0) rotate(0.2deg);
+  }
+  50% {
+    transform: translate3d(-3px, 1px, 0) rotate(-0.1deg);
+  }
+  75% {
+    transform: translate3d(1px, 2px, 0) rotate(0.1deg);
+  }
+}
+
+@keyframes floating-3d-large {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(4px, -6px, 0) rotate(0.3deg);
+  }
+  50% {
+    transform: translate3d(-5px, 2px, 0) rotate(-0.2deg);
+  }
+  75% {
+    transform: translate3d(3px, 4px, 0) rotate(0.2deg);
+  }
+}
+
+@keyframes floating-3d-close {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate3d(6px, -8px, 0) rotate(0.4deg);
+  }
+  50% {
+    transform: translate3d(-7px, 3px, 0) rotate(-0.3deg);
+  }
+  75% {
+    transform: translate3d(4px, 6px, 0) rotate(0.3deg);
+  }
+}
+
+.floating-card-1 {
+  animation: floating-3d 6000ms ease-in-out infinite;
+  animation-delay: 0ms;
+}
+
+.floating-card-2 {
+  animation: floating-3d-large 7000ms ease-in-out infinite;
+  animation-delay: 500ms;
+}
+
+.floating-card-3 {
+  animation: floating-3d 6500ms ease-in-out infinite;
+  animation-delay: 1000ms;
+}
+
+.floating-card-4 {
+  animation: floating-3d-large 7500ms ease-in-out infinite;
+  animation-delay: 1500ms;
+}
+
+.floating-card-5 {
+  animation: floating-3d-close 5500ms ease-in-out infinite;
+  animation-delay: 2000ms;
+}
+
+.floating-card-6 {
+  animation: floating-3d 7000ms ease-in-out infinite;
+  animation-delay: 2500ms;
+}
+
+.floating-card-7 {
+  animation: floating-3d-large 6000ms ease-in-out infinite;
+  animation-delay: 3000ms;
+}
+
+.floating-card-8 {
+  animation: floating-3d-close 6500ms ease-in-out infinite;
+  animation-delay: 3500ms;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
