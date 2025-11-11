@@ -1,0 +1,266 @@
+'use client';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { phoneScreens, sideScreens, SCREEN_CONFIG } from './screens';
+
+export default function InteractiveScreensSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const lastScrollTime = useRef(0);
+  const scrollDelay = 400;
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const resetAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+    autoScrollIntervalRef.current = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % phoneScreens.length);
+    }, 3500);
+  }, []);
+
+  useEffect(() => {
+    resetAutoScroll();
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+    };
+  }, [resetAutoScroll]);
+
+  const next = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % phoneScreens.length);
+    resetAutoScroll();
+  }, [resetAutoScroll]);
+
+  const prev = useCallback(() => {
+    setCurrentIndex((prev) => prev === 0 ? phoneScreens.length - 1 : prev - 1);
+    resetAutoScroll();
+  }, [resetAutoScroll]);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let startX = 0;
+
+    const handleWheel = (e: WheelEvent) => {
+      const now = Date.now();
+      if (now - lastScrollTime.current < scrollDelay) return;
+      if (Math.abs(e.deltaX) < 30) return;
+      
+      lastScrollTime.current = now;
+      if (e.deltaX > 0) {
+        next();
+      } else {
+        prev();
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      const now = Date.now();
+      if (now - lastScrollTime.current < scrollDelay) return;
+      
+      const endX = e.changedTouches[0].clientX;
+      const diff = startX - endX;
+      if (Math.abs(diff) > 50) {
+        lastScrollTime.current = now;
+        if (diff > 0) {
+          next();
+        } else {
+          prev();
+        }
+      }
+    };
+
+    section.addEventListener('wheel', handleWheel, { passive: true });
+    section.addEventListener('touchstart', handleTouchStart, { passive: true });
+    section.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      section.removeEventListener('wheel', handleWheel);
+      section.removeEventListener('touchstart', handleTouchStart);
+      section.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [next, prev]);
+
+  const handleSideScreenClick = useCallback((indexOffset: number) => {
+    const newIndex = (currentIndex + indexOffset) % phoneScreens.length;
+    setCurrentIndex(newIndex >= 0 ? newIndex : phoneScreens.length + newIndex);
+    resetAutoScroll();
+  }, [currentIndex, resetAutoScroll]);
+
+  const displaySideScreens = useMemo(
+    () => [
+      sideScreens[(currentIndex - 3 + sideScreens.length) % sideScreens.length],
+      sideScreens[(currentIndex - 2 + sideScreens.length) % sideScreens.length],
+      sideScreens[(currentIndex - 1 + sideScreens.length) % sideScreens.length],
+      sideScreens[(currentIndex + 1) % sideScreens.length],
+      sideScreens[(currentIndex + 2) % sideScreens.length],
+      sideScreens[(currentIndex + 3) % sideScreens.length],
+    ],
+    [currentIndex]
+  );
+
+  const getOpacity = (index: number) => index < 3 ? 1 - (2 - index) * 0.3 : 1 - (index - 3) * 0.3;
+
+  const blurOverlayStyle = {
+    backdropFilter: 'blur(10px)',
+    WebkitBackdropFilter: 'blur(10px)',
+  };
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative pt-[152px] border-bg-black flex items-center justify-center overflow-hidden"
+    >
+      <div
+        className="absolute inset-y-0 left-0 w-[3%] pointer-events-none z-40"
+        style={{
+          ...blurOverlayStyle,
+          maskImage: 'linear-gradient(to right, black 0%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 100%)',
+        }}
+      />
+      <div
+        className="absolute inset-y-0 right-0 w-[3%] pointer-events-none z-40"
+        style={{
+          ...blurOverlayStyle,
+          maskImage: 'linear-gradient(to left, black 0%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to left, black 0%, transparent 100%)',
+        }}
+      />
+
+      <div className="relative flex items-center justify-center h-full w-full">
+        <div
+          className="absolute left-0 flex items-center justify-end h-full space-x-4 z-30"
+          style={{ transform: 'translateX(-19%)' }}
+        >
+          <SideScreen
+            src={displaySideScreens[0]}
+            alt="left-outer"
+            config={SCREEN_CONFIG.sideScreens.outer}
+            opacity={getOpacity(0.5)}
+            transform="translateY(-30px)"
+            onClick={() => handleSideScreenClick(-3)}
+          />
+          <SideScreen
+            src={displaySideScreens[1]}
+            alt="left-middle"
+            config={SCREEN_CONFIG.sideScreens.middle}
+            onClick={() => handleSideScreenClick(-2)}
+          />
+          <SideScreen
+            src={displaySideScreens[2]}
+            alt="left-inner"
+            config={SCREEN_CONFIG.sideScreens.inner}
+            transform="translateY(-60px)"
+            onClick={() => handleSideScreenClick(-1)}
+          />
+        </div>
+
+        <PhoneScreen currentIndex={currentIndex} />
+
+        <div
+          className="absolute right-0 flex items-center justify-start h-full space-x-4 z-30"
+          style={{ transform: 'translateX(19%)' }}
+        >
+          <SideScreen
+            src={displaySideScreens[3]}
+            alt="right-inner"
+            config={SCREEN_CONFIG.sideScreens.inner}
+            transform="translateY(-60px)"
+            onClick={() => handleSideScreenClick(1)}
+          />
+          <SideScreen
+            src={displaySideScreens[4]}
+            alt="right-middle"
+            config={SCREEN_CONFIG.sideScreens.middle}
+            onClick={() => handleSideScreenClick(2)}
+          />
+          <SideScreen
+            src={displaySideScreens[5]}
+            alt="right-outer"
+            config={SCREEN_CONFIG.sideScreens.outer}
+            opacity={getOpacity(0.5)}
+            transform="translateY(-30px)"
+            onClick={() => handleSideScreenClick(3)}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PhoneScreen({ currentIndex }: { currentIndex: number }) {
+  return (
+    <div className="relative z-20 w-[366px] h-[782px] pointer-events-none">
+      <Image
+        src="/Design/productionReady-card/image2.png"
+        alt="Phone"
+        fill
+        priority
+        className="object-contain"
+      />
+      <motion.div
+        className="absolute inset-x-[4.2%] inset-y-[1.2%] rounded-[22px] overflow-hidden bg-black"
+        style={{
+          WebkitMaskImage: 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+          maskImage: 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+        }}
+      >
+        <motion.div
+          key={currentIndex}
+          initial={{ filter: 'blur(8px)', opacity: 0 }}
+          animate={{ filter: 'blur(0px)', opacity: 1 }}
+          exit={{ filter: 'blur(8px)', opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={phoneScreens[currentIndex]}
+            alt={`screen-${currentIndex}`}
+            fill
+            className="object-cover"
+          />
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+function SideScreen({
+  src,
+  alt,
+  config,
+  opacity = 1,
+  transform = '',
+  onClick,
+}: {
+  src: string;
+  alt: string;
+  config: { width: number; height: number };
+  opacity?: number;
+  transform?: string;
+  onClick?: () => void;
+}) {
+  return (
+    <motion.div
+      className="relative rounded-[16px] overflow-hidden shadow-2xl border border-neutral-800 cursor-pointer"
+      style={{
+        width: `${config.width}px`,
+        height: `${config.height}px`,
+        opacity,
+        transform,
+      }}
+      onClick={onClick}
+    >
+      <Image src={src} alt={alt} fill className="object-cover" />
+    </motion.div>
+  );
+}

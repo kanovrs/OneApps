@@ -19,11 +19,12 @@ module.exports = {
           black80: '#161616',
           black70: '#1A1A1A',
           red: '#FFEDEA',
+          yellow: '#F5FF70',
         },
         neutral: {
           30: '#7A7A7A',
           10: '#DEDEDE',
-          20: '#E8E8E8',
+          20: '#E8E8E6',
         },
         text: {
           light: '#FEFFF8',

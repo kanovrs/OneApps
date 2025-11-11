@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Button from '../Button/Button';
 
 export interface CardProps {
@@ -70,7 +71,13 @@ export default function Card({
         </span>
       </div>
 
-      <Button saleBtn={!!active} text={active ? 'Залишити заявку' : ''} />
+      <Link
+        href="https://t.me/oneapps_sales"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Button saleBtn={!!active} text={active ? 'Залишити заявку' : ''} />
+      </Link>
 
       <p className="">{text}</p>
 
