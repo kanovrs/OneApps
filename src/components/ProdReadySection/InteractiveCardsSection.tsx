@@ -78,7 +78,7 @@ export default function InteractiveCardsSection() {
                   width: `${position.size.width}px`,
                   height: `${position.size.height}px`,
                   transform: `translateX(${position.offset}px)`,
-                  zIndex: position.zIndex,
+                  zIndex: 49,
                   left: `calc(50% - ${position.size.width / 2}px)`,
                   opacity: position.opacity,
                 }}
