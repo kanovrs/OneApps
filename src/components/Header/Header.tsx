@@ -3,7 +3,8 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 flex justify-between bg-[url('/Design/head-grid.png')] bg-cover py-[16px] items-center relative">
+    <header className="sticky top-0 z-[100] flex justify-between bg-[url('/Design/head-grid.png')] bg-cover py-[16px] items-center relative">
+
       <div className="absolute inset-0 backdrop-blur-[50px] -z-10 w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"></div>
 
       <div className="logo relative z-10">

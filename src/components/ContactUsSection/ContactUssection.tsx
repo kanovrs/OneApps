@@ -3,7 +3,6 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Tag from '../Tag';
 import Button from '../Button/Button';
-import Link from 'next/link';
 
 export default function ContactUsSection() {
   const [email, setEmail] = useState('');
@@ -12,7 +11,7 @@ export default function ContactUsSection() {
     <section className="mt-[120px] md:mt-[180px] relative overflow-hidden">
       <div className="flex flex-col items-start gap-2 pt-8 relative z-30">
         <Tag square text="[: ONEAPPS" />
-        <h2 className="w-full font-bold text-h2 uppercase text-neutral-20 whitespace-pre-line pt-2 pb-[44px]">
+        <h2 className="w-full font-bold text-h2 uppercase text-text-light whitespace-pre-line pt-2 pb-[44px]">
           Пишіть, щоб отримати{'\n'} консультацію або{'\n'} запустити свій
           додаток
         </h2>
@@ -29,23 +28,25 @@ export default function ContactUsSection() {
             <Button />
           </div>
 
-          <Link
+          <a
             href="https://t.me/oneapps_sales"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-start w-[379px] h-24 gap-8 bg-bg-black90 hover:bg-bg-black70 text-text-light px-4 py-4 rounded-lg transition-colors"
+            className="button-container"
           >
-            <div className="flex items-center justify-center w-16 h-16 bg-bg-black80 rounded-lg p-4">
-              <Image
-                src="/Design/telegramIcon.svg"
-                alt="Telegram"
-                width={64}
-                height={64}
-                className="w-full h-full object-contain"
-              />
+            <div className="gradient-border"></div>
+            <div className="animated-button right-side w-[379px] justify-start">
+              <div className="arow flex items-center justify-center w-16 h-16 bg-bg-black80 rounded-lg p-4">
+                <Image
+                  src="/Design/telegramIcon.svg"
+                  alt="Telegram"
+                  width={24}
+                  height={24}
+                />
+              </div>
+              <span className="button-text">@oneapps_sales</span>
             </div>
-            <span className="text-reg">@oneapps_sales</span>
-          </Link>
+          </a>
         </div>
 
         <div className="text-neutral-30 text-sup mt-[80px] text-center w-full">

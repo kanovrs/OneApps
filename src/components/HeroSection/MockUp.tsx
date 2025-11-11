@@ -3,6 +3,7 @@ import Image from 'next/image';
 export default function MockUp() {
   return (
     <div className="relative flex flex-col items-center group pr-[80px]">
+      {/* Подсветка под всем */}
       <div className="absolute bottom-[-5px] -translate-x-0 z-0">
         <div
           style={{
@@ -21,6 +22,7 @@ export default function MockUp() {
         ></div>
       </div>
 
+      {/* Телефон */}
       <div className="relative w-[145px] z-10">
         <div className="transition-all duration-700 ease-in-out group-hover:-rotate-[-8deg]">
           <Image
@@ -32,8 +34,11 @@ export default function MockUp() {
           />
         </div>
 
+        {/* Карточки поверх экрана */}
         <div className="absolute top-[145px] left-1/2 -translate-x-1/2 flex gap-[4px] z-20">
+          {/* Левая карточка с бананами и bg-item */}
           <div className="relative w-[90px] h-[150px] group">
+            {/* Банан снизу (под карточкой, сдвигается влево при ховере) */}
             <div className="absolute -bottom-[30px] left-1/3 -translate-x-1/2 w-[50px] h-[50px] rotate-[100deg] z-0 pointer-events-none transition-transform duration-500 ease-in-out group-hover:-translate-x-[50px]">
               <Image
                 src="/Design/MockUp/banana.png"
@@ -43,6 +48,7 @@ export default function MockUp() {
               />
             </div>
 
+            {/* Карточка (вращается и сдвигается независимо) */}
             <div className="relative z-10 transition-all duration-700 ease-in-out group-hover:-rotate-[10deg] group-hover:-translate-x-[12px]">
               <Image
                 src="/Design/MockUp/card1.png"
@@ -53,6 +59,7 @@ export default function MockUp() {
               />
             </div>
 
+            {/* Банан над карточкой */}
             <div className="absolute -top-[35px] left-[35px] -translate-x-1/2 rotate-[80deg] w-[40px] h-[40px] z-20 pointer-events-none transition-transform duration-500 ease-in-out group-hover:scale-[2] group-hover:-translate-y-[20px] ">
               <Image
                 src="/Design/MockUp/banana.png"
@@ -62,6 +69,7 @@ export default function MockUp() {
               />
             </div>
 
+            {/* Декор (всегда поверх карточки) */}
             <div className="absolute z-30 pointer-events-none w-[94px] h-[94px] right-8 top-0 transition-all duration-1000 ease-in-out group-hover:translate-x-[-20px] group-hover:translate-y-[-10px]">
               <Image
                 src="/Design/MockUp/bg-item.png"
@@ -83,6 +91,7 @@ export default function MockUp() {
             </div>
           </div>
 
+          {/* Средняя (card2) с гориллой */}
           <div className="relative w-[90px] h-[150px] transition-all duration-700 ease-in-out z-20 overflow-visible">
             <Image
               src="/Design/MockUp/card2.png"
@@ -111,7 +120,9 @@ export default function MockUp() {
             </div>
           </div>
 
+          {/* Правая карточка */}
           <div className="relative w-[90px] h-[150px] transition-all duration-700 ease-in-out group-hover:rotate-[10deg] group-hover:translate-x-[12px] ">
+            {/* Банан снизу (под карточкой, выезжает при ховере) */}
             <div className="absolute -bottom-[-10px] left-1/2 -translate-x-1/2 w-[50px] h-[50px] z-0 pointer-events-none transition-all duration-700 ease-in-out group-hover:translate-y-[40px] rotate-[40deg]">
               <Image
                 src="/Design/MockUp/banana.png"
@@ -121,6 +132,7 @@ export default function MockUp() {
               />
             </div>
 
+            {/* Карточка */}
             <Image
               src="/Design/MockUp/card3.png"
               width={90}
@@ -129,6 +141,7 @@ export default function MockUp() {
               className="relative z-10"
             />
 
+            {/* Банан над карточкой */}
             <div className="absolute -top-[10px] left-full -translate-x-1/2 w-[60px] h-[60px] z-20 pointer-events-none transition-all duration-700 ease-in-out group-hover:scale-[2] group-hover:translate-y-[-20px]">
               <Image
                 src="/Design/MockUp/banana.png"
@@ -138,6 +151,7 @@ export default function MockUp() {
               />
             </div>
 
+            {/* Декор поверх карточки */}
             <div className="absolute z-30 pointer-events-none w-[94px] h-[94px] right-[-43px] top-0">
               <Image
                 src="/Design/MockUp/bg-item2.png"
