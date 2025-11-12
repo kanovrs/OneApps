@@ -8,6 +8,7 @@ import PricesSection from '@/components/PricesSection/PricesSection';
 import TechnicalSection from '@/components/TechnicalSection/TechnicalSection';
 import ReviewsSection from '@/components/ReviewsSection/ReviewsSection';
 import ProdReadySection from '@/components/ProdReadySection/ProdReadySection';
+import ContactUsSection from '@/components/ContactUsSection/ContactUssection';
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           <TechnicalSection />
           <ReviewsSection />
           <ProdReadySection />
+          <ContactUsSection />
         </div>
         <div></div>
       </Container>

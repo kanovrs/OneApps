@@ -21,7 +21,7 @@ export default function SolutionsSection() {
     <section className="mt-[180px]">
       <div className="flex flex-col items-center gap-[8px] py-[32px]">
         <Tag square={true} text="[: OneApps обирають" />
-        <h2 className="max-w-[50%] text-center font-bold text-h2 uppercase">
+        <h2 className="max-w-[50%] text-center font-bold text-h2 uppercase text-neutral-20">
           Готові рішення для арбітражу
         </h2>
       </div>

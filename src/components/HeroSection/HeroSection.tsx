@@ -21,7 +21,7 @@ const tags = [
 export default function HeroSection() {
   return (
     <section className="mt-[80px]">
-      <div className="mb-[24px]">
+      <div className="mb-[24px] ">
         <Tag text="[: android app ]" square={true} />
       </div>
 
@@ -30,9 +30,15 @@ export default function HeroSection() {
         <MockUp />
       </div>
 
-      <div className="flex justify-between items-start gap-[8px]">
+      <div className="flex justify-between items-start gap-[8px] mt-[120px]">
         <div className="w-1/3">
-          <Button text="Залишити заявку" />
+          <a
+            href="https://t.me/oneapps_sales"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button text="Залишити заявку" />
+          </a>
         </div>
         <div className="flex gap-[8px] w-2/3">
           {tags.map((item, index) => (
@@ -40,7 +46,7 @@ export default function HeroSection() {
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="w-1/2"
+              className="w-1/2 text-neutral-20"
               transition={{
                 duration: 0.6,
                 delay: (index + 1) * 0.4,
