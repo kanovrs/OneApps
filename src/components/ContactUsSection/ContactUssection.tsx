@@ -5,7 +5,22 @@ import Tag from '../Tag';
 import Button from '../Button/Button';
 
 export default function ContactUsSection() {
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({
+    email: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
 
   return (
     <section className="mt-[120px] md:mt-[180px] relative overflow-hidden">
@@ -17,16 +32,21 @@ export default function ContactUsSection() {
         </h2>
 
         <div className="flex flex-col md:flex-row justify-between items-center w-full mt-15 gap-6">
-          <div className="flex items-center w-full md:max-w-[450px] lg:max-w-[544px] border-b border-bg-black70 focus-within:border-text-light transition-colors pb-7 mt-6">
+          <form 
+            onSubmit={handleSubmit}
+            className="flex items-center w-full md:max-w-[450px] lg:max-w-[544px] border-b border-bg-black70 focus-within:border-text-light transition-colors pb-7 mt-6"
+          >
             <input
               type="email"
+              name="email"
               placeholder="E-mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               className="w-full bg-transparent outline-none text-text-light placeholder-text-dark placeholder:font-bold placeholder:text-[24px] placeholder:leading-[26px] py-3 text-reg autofill-clean"
+              required
             />
             <Button />
-          </div>
+          </form>
 
           <a
             href="https://t.me/oneapps_sales"
