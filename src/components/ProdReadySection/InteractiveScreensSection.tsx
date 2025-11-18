@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { phoneScreens, sideScreens, SCREEN_CONFIG } from './screens';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function InteractiveScreensSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement | null>(null);
   const lastScrollTime = useRef(0);
   const scrollDelay = 400;
@@ -35,7 +37,9 @@ export default function InteractiveScreensSection() {
   }, [resetAutoScroll]);
 
   const prev = useCallback(() => {
-    setCurrentIndex((prev) => prev === 0 ? phoneScreens.length - 1 : prev - 1);
+    setCurrentIndex((prev) =>
+      prev === 0 ? phoneScreens.length - 1 : prev - 1
+    );
     resetAutoScroll();
   }, [resetAutoScroll]);
 
@@ -49,7 +53,7 @@ export default function InteractiveScreensSection() {
       const now = Date.now();
       if (now - lastScrollTime.current < scrollDelay) return;
       if (Math.abs(e.deltaX) < 30) return;
-      
+
       lastScrollTime.current = now;
       if (e.deltaX > 0) {
         next();
@@ -65,7 +69,7 @@ export default function InteractiveScreensSection() {
     const handleTouchEnd = (e: TouchEvent) => {
       const now = Date.now();
       if (now - lastScrollTime.current < scrollDelay) return;
-      
+
       const endX = e.changedTouches[0].clientX;
       const diff = startX - endX;
       if (Math.abs(diff) > 50) {
@@ -89,13 +93,28 @@ export default function InteractiveScreensSection() {
     };
   }, [next, prev]);
 
-  const handleSideScreenClick = useCallback((indexOffset: number) => {
-    const newIndex = (currentIndex + indexOffset) % phoneScreens.length;
-    setCurrentIndex(newIndex >= 0 ? newIndex : phoneScreens.length + newIndex);
-    resetAutoScroll();
-  }, [currentIndex, resetAutoScroll]);
+  const handleSideScreenClick = useCallback(
+    (indexOffset: number) => {
+      const newIndex = (currentIndex + indexOffset) % phoneScreens.length;
+      setCurrentIndex(
+        newIndex >= 0 ? newIndex : phoneScreens.length + newIndex
+      );
+      resetAutoScroll();
+    },
+    [currentIndex, resetAutoScroll]
+  );
 
-  const displaySideScreens = useMemo(
+  // Для мобильных - показываем только по 1 экрану с каждой стороны
+  const mobileSideScreens = useMemo(
+    () => [
+      sideScreens[(currentIndex - 1 + sideScreens.length) % sideScreens.length],
+      sideScreens[(currentIndex + 1) % sideScreens.length],
+    ],
+    [currentIndex]
+  );
+
+  // Для десктопа - показываем 3 экрана с каждой стороны
+  const desktopSideScreens = useMemo(
     () => [
       sideScreens[(currentIndex - 3 + sideScreens.length) % sideScreens.length],
       sideScreens[(currentIndex - 2 + sideScreens.length) % sideScreens.length],
@@ -107,7 +126,8 @@ export default function InteractiveScreensSection() {
     [currentIndex]
   );
 
-  const getOpacity = (index: number) => index < 3 ? 1 - (2 - index) * 0.3 : 1 - (index - 3) * 0.3;
+  const getOpacity = (index: number) =>
+    index < 3 ? 1 - (2 - index) * 0.3 : 1 - (index - 3) * 0.3;
 
   const blurOverlayStyle = {
     backdropFilter: 'blur(10px)',
@@ -117,14 +137,15 @@ export default function InteractiveScreensSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative pt-[152px] border-bg-black flex items-center justify-center overflow-hidden"
+      className="relative pt-[80px] md:pt-[152px] border-bg-black flex items-center justify-center overflow-hidden w-full"
     >
       <div
         className="absolute inset-y-0 left-0 w-[3%] pointer-events-none z-40"
         style={{
           ...blurOverlayStyle,
           maskImage: 'linear-gradient(to right, black 0%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to right, black 0%, transparent 100%)',
         }}
       />
       <div
@@ -132,74 +153,137 @@ export default function InteractiveScreensSection() {
         style={{
           ...blurOverlayStyle,
           maskImage: 'linear-gradient(to left, black 0%, transparent 100%)',
-          WebkitMaskImage: 'linear-gradient(to left, black 0%, transparent 100%)',
+          WebkitMaskImage:
+            'linear-gradient(to left, black 0%, transparent 100%)',
         }}
       />
 
       <div className="relative flex items-center justify-center h-full w-full">
-        <div
-          className="absolute left-0 flex items-center justify-end h-full space-x-4 z-30"
-          style={{ transform: 'translateX(-19%)' }}
-        >
-          <SideScreen
-            src={displaySideScreens[0]}
-            alt="left-outer"
-            config={SCREEN_CONFIG.sideScreens.outer}
-            opacity={getOpacity(0.5)}
-            transform="translateY(-30px)"
-            onClick={() => handleSideScreenClick(-3)}
-          />
-          <SideScreen
-            src={displaySideScreens[1]}
-            alt="left-middle"
-            config={SCREEN_CONFIG.sideScreens.middle}
-            onClick={() => handleSideScreenClick(-2)}
-          />
-          <SideScreen
-            src={displaySideScreens[2]}
-            alt="left-inner"
-            config={SCREEN_CONFIG.sideScreens.inner}
-            transform="translateY(-60px)"
-            onClick={() => handleSideScreenClick(-1)}
-          />
-        </div>
+        {/* Левая сторона - мобильная версия */}
+        {isMobile && (
+          <div
+            className="absolute left-0 flex items-center justify-end h-full z-30"
+            style={{ transform: 'translateX(-20%)' }}
+          >
+            <SideScreen
+              src={mobileSideScreens[0]}
+              alt="left-mobile"
+              config={{ width: 100, height: 200 }}
+              opacity={0.7}
+              transform="translateY(-20px)"
+              onClick={() => handleSideScreenClick(-1)}
+              isMobile={true}
+            />
+          </div>
+        )}
 
-        <PhoneScreen currentIndex={currentIndex} />
+        {/* Левая сторона - десктоп версия */}
+        {!isMobile && (
+          <div
+            className="absolute left-0 flex items-center justify-end h-full space-x-4 z-30"
+            style={{ transform: 'translateX(-19%)' }}
+          >
+            <SideScreen
+              src={desktopSideScreens[0]}
+              alt="left-outer"
+              config={SCREEN_CONFIG.sideScreens.outer}
+              opacity={getOpacity(0.5)}
+              transform="translateY(-30px)"
+              onClick={() => handleSideScreenClick(-3)}
+              isMobile={false}
+            />
+            <SideScreen
+              src={desktopSideScreens[1]}
+              alt="left-middle"
+              config={SCREEN_CONFIG.sideScreens.middle}
+              onClick={() => handleSideScreenClick(-2)}
+              isMobile={false}
+            />
+            <SideScreen
+              src={desktopSideScreens[2]}
+              alt="left-inner"
+              config={SCREEN_CONFIG.sideScreens.inner}
+              transform="translateY(-60px)"
+              onClick={() => handleSideScreenClick(-1)}
+              isMobile={false}
+            />
+          </div>
+        )}
 
-        <div
-          className="absolute right-0 flex items-center justify-start h-full space-x-4 z-30"
-          style={{ transform: 'translateX(19%)' }}
-        >
-          <SideScreen
-            src={displaySideScreens[3]}
-            alt="right-inner"
-            config={SCREEN_CONFIG.sideScreens.inner}
-            transform="translateY(-60px)"
-            onClick={() => handleSideScreenClick(1)}
-          />
-          <SideScreen
-            src={displaySideScreens[4]}
-            alt="right-middle"
-            config={SCREEN_CONFIG.sideScreens.middle}
-            onClick={() => handleSideScreenClick(2)}
-          />
-          <SideScreen
-            src={displaySideScreens[5]}
-            alt="right-outer"
-            config={SCREEN_CONFIG.sideScreens.outer}
-            opacity={getOpacity(0.5)}
-            transform="translateY(-30px)"
-            onClick={() => handleSideScreenClick(3)}
-          />
-        </div>
+        {/* Основной экран телефона */}
+        <PhoneScreen currentIndex={currentIndex} isMobile={isMobile} />
+
+        {/* Правая сторона - мобильная версия */}
+        {isMobile && (
+          <div
+            className="absolute right-0 flex items-center justify-start h-full z-30"
+            style={{ transform: 'translateX(20%)' }}
+          >
+            <SideScreen
+              src={mobileSideScreens[1]}
+              alt="right-mobile"
+              config={{ width: 100, height: 200 }}
+              opacity={0.7}
+              transform="translateY(-20px)"
+              onClick={() => handleSideScreenClick(1)}
+              isMobile={true}
+            />
+          </div>
+        )}
+
+        {/* Правая сторона - десктоп версия */}
+        {!isMobile && (
+          <div
+            className="absolute right-0 flex items-center justify-start h-full space-x-4 z-30"
+            style={{ transform: 'translateX(19%)' }}
+          >
+            <SideScreen
+              src={desktopSideScreens[3]}
+              alt="right-inner"
+              config={SCREEN_CONFIG.sideScreens.inner}
+              transform="translateY(-60px)"
+              onClick={() => handleSideScreenClick(1)}
+              isMobile={false}
+            />
+            <SideScreen
+              src={desktopSideScreens[4]}
+              alt="right-middle"
+              config={SCREEN_CONFIG.sideScreens.middle}
+              onClick={() => handleSideScreenClick(2)}
+              isMobile={false}
+            />
+            <SideScreen
+              src={desktopSideScreens[5]}
+              alt="right-outer"
+              config={SCREEN_CONFIG.sideScreens.outer}
+              opacity={getOpacity(0.5)}
+              transform="translateY(-30px)"
+              onClick={() => handleSideScreenClick(3)}
+              isMobile={false}
+            />
+          </div>
+        )}
       </div>
     </section>
   );
 }
 
-function PhoneScreen({ currentIndex }: { currentIndex: number }) {
+function PhoneScreen({
+  currentIndex,
+  isMobile,
+}: {
+  currentIndex: number;
+  isMobile: boolean;
+}) {
+  const phoneSize = isMobile
+    ? { width: 183, height: 391 }
+    : { width: 366, height: 782 };
+
   return (
-    <div className="relative z-20 w-[366px] h-[782px] pointer-events-none">
+    <div
+      className="relative z-20 pointer-events-none"
+      style={{ width: `${phoneSize.width}px`, height: `${phoneSize.height}px` }}
+    >
       <Image
         src="/Design/productionReady-card/image2.png"
         alt="Phone"
@@ -208,10 +292,16 @@ function PhoneScreen({ currentIndex }: { currentIndex: number }) {
         className="object-contain"
       />
       <motion.div
-        className="absolute inset-x-[4.2%] inset-y-[1.2%] rounded-[22px] overflow-hidden bg-black"
+        className={`absolute inset-x-[4.2%] inset-y-[1.2%] overflow-hidden bg-black ${
+          isMobile ? 'rounded-[16px]' : 'rounded-[22px]'
+        }`}
         style={{
-          WebkitMaskImage: 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
-          maskImage: 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+          WebkitMaskImage: isMobile
+            ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
+            : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+          maskImage: isMobile
+            ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
+            : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
         }}
       >
         <motion.div
@@ -241,6 +331,7 @@ function SideScreen({
   opacity = 1,
   transform = '',
   onClick,
+  isMobile = false,
 }: {
   src: string;
   alt: string;
@@ -248,10 +339,13 @@ function SideScreen({
   opacity?: number;
   transform?: string;
   onClick?: () => void;
+  isMobile?: boolean;
 }) {
   return (
     <motion.div
-      className="relative rounded-[16px] overflow-hidden shadow-2xl border border-neutral-800 cursor-pointer"
+      className={`relative rounded-[16px] overflow-hidden shadow-2xl border border-neutral-800 cursor-pointer ${
+        isMobile ? 'scale-90' : ''
+      }`}
       style={{
         width: `${config.width}px`,
         height: `${config.height}px`,

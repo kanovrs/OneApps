@@ -8,7 +8,7 @@ export default function TextBlock({ text, tag }: TextBlockProps) {
   return (
     <div>
       <Tag text={tag} square={false} />
-      <p className="mt-[62px]">{text}</p>
+      <p className="mt-[24px]">{text}</p>
     </div>
   );
 }

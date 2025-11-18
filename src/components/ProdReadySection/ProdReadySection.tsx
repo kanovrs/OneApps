@@ -2,17 +2,22 @@
 import Tag from '../Tag';
 import InteractiveCardsSection from './InteractiveCardsSection';
 import InteractiveScreensSection from './InteractiveScreensSection';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function ProdReadySection() {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="mt-[120px] md:mt-[180px] relative overflow-hidden">
+    <section className={`mt-[64px] md:mt-[180px] relative ${isMobile ? '' : 'overflow-hidden'}`}>
       <div className="flex flex-col items-center gap-[8px] pt-[32px] relative z-30">
         <Tag square text="[: Production Ready" />
-        <h2 className="text-center font-bold text-h2 uppercase text-neutral-20 whitespace-pre-line pt-[8px]">
+        <h2 className="text-center font-bold text-[32px] md:text-h2 uppercase text-neutral-20 whitespace-pre-line pt-[8px]">
           Інтерфейси з наших{'\n'}live‑проєктів
         </h2>
       </div>
-      <InteractiveScreensSection />
+      <div className={`w-full md:w-auto ${isMobile ? 'w-[calc(100%+80px)] -mx-[40px] px-4 md:w-auto md:mx-0 md:px-0' : ''}`}>
+        <InteractiveScreensSection />
+      </div>
       <InteractiveCardsSection />
     </section>
   );

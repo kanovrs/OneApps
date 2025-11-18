@@ -80,7 +80,7 @@ export default function TechnicalSection() {
   };
 
   return (
-    <section className="mt-[180px]">
+    <section className="mt-[64px] md:mt-[180px]">
       <SectionHeader tag="[: СЕРВІС" title="Що ви отримаєте з OneApps" />
 
       <SectionTabs

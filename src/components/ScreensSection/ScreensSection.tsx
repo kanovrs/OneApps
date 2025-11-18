@@ -1,9 +1,10 @@
 'use client';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useScroll } from 'framer-motion';
 import { useRef } from 'react';
 
 import PhoneMockup from './PhoneMockup';
 import ScreensLoop from './ScreensLoop';
+import './style.css';
 
 const screens = [
   '/screens/1.png',
@@ -27,18 +28,18 @@ export default function ScreensSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[300vh] bg-[#0a0a0a] mt-[150px]"
+      className="relative h-[300vh] bg-[#0a0a0a] w-[calc(100%+80px)] -mx-[40px] md:w-full md:mx-0"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-visible">
+      <div className="sticky top-0 h-screen flex items-center justify-center overflow-visible w-full">
         <div
-          className="absolute inset-y-0 left-0 w-[15%] pointer-events-none z-[60] left-fade"
+          className="absolute inset-y-0 left-0 w-0 md:w-[15%] pointer-events-none z-[60] left-fade"
           style={{
             background:
               'linear-gradient(to right, rgba(10,10,10,1) 0%, rgba(10,10,10,0) 100%)',
           }}
         />
         <div
-          className="absolute inset-y-0 right-0 w-[15%] pointer-events-none z-[60] right-fade"
+          className="absolute inset-y-0 right-0 w-0 md:w-[15%] pointer-events-none z-[60] right-fade"
           style={{
             background:
               'linear-gradient(to left, rgba(10,10,10,1) 0%, rgba(10,10,10,0) 100%)',
@@ -52,7 +53,7 @@ export default function ScreensSection() {
           }}
         />
 
-        <div className="relative w-full max-w-[1285px] flex items-center justify-center">
+        <div className="relative w-full max-w-full md:max-w-[1285px] flex items-center justify-center">
           <ScreensLoop images={screens} />
 
           <PhoneMockup scrollProgress={scrollYProgress} />
