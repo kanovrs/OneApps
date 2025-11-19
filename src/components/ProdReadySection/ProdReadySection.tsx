@@ -15,7 +15,7 @@ export default function ProdReadySection() {
           Інтерфейси з наших{'\n'}live‑проєктів
         </h2>
       </div>
-      <div className={`w-full md:w-auto ${isMobile ? 'w-[calc(100%+80px)] -mx-[40px] px-4 md:w-auto md:mx-0 md:px-0' : ''}`}>
+      <div className="w-full md:w-auto">
         <InteractiveScreensSection />
       </div>
       <InteractiveCardsSection />

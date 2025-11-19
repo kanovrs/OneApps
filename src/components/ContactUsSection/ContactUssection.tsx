@@ -52,7 +52,7 @@ export default function ContactUsSection() {
               href="https://t.me/oneapps_sales"
               target="_blank"
               rel="noopener noreferrer"
-              className="button-container w-full md:w-auto"
+              className="button-container w-full md:w-auto no-border-radius"
             >
               <div className="gradient-border"></div>
               <div className={`animated-button right-side ${isMobile ? 'w-full' : 'w-[379px]'} justify-start`}>
@@ -92,6 +92,12 @@ export default function ContactUsSection() {
           -webkit-box-shadow: 0 0 0px 1000px transparent inset;
           transition: background-color 5000s ease-in-out 0s;
           background-color: transparent;
+        }
+        .no-border-radius .gradient-border {
+          border-radius: 0;
+        }
+        .no-border-radius .animated-button {
+          border-radius: 0;
         }
       `}</style>
     </section>

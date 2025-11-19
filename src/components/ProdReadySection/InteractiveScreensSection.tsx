@@ -137,7 +137,9 @@ export default function InteractiveScreensSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative pt-[80px] md:pt-[152px] border-bg-black flex items-center justify-center overflow-hidden w-full"
+      className={`relative pt-[80px] md:pt-[152px] border-bg-black flex items-center justify-center overflow-hidden ${
+        isMobile ? 'w-[calc(100%+80px)] -mx-[40px]' : 'w-full'
+      }`}
     >
       <div
         className="absolute inset-y-0 left-0 w-[3%] pointer-events-none z-40"
@@ -158,7 +160,11 @@ export default function InteractiveScreensSection() {
         }}
       />
 
-      <div className="relative flex items-center justify-center h-full w-full">
+      <div 
+        className={`flex items-center justify-center h-full w-full ${
+          isMobile ? 'relative inset-x-0' : 'relative'
+        }`}
+      >
         {/* Левая сторона - мобильная версия */}
         {isMobile && (
           <div
