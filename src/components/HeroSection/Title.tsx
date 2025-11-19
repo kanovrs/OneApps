@@ -4,13 +4,14 @@ export default function Title() {
       <svg
         viewBox="0 0 860 250"
         width="100%"
-        height="auto"
+        height="250"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-label="One Apps"
         className="md:max-w-none max-w-[342px] mx-auto md:mx-0"
       >
         <defs>
+          height="250"
           <linearGradient
             id="rotatingGradient"
             gradientUnits="objectBoundingBox"
@@ -40,11 +41,11 @@ export default function Title() {
           fill="url(#rotatingGradient)"
           className="uppercase gradient-text"
           style={{
-            fontSize: '300px',
+            fontSize: "300px",
             fontWeight: 600,
-            fontStyle: 'normal', 
-            lineHeight: '100px',
-            letterSpacing: '-0.5px',
+            fontStyle: "normal",
+            lineHeight: "100px",
+            letterSpacing: "-0.5px",
           }}
         >
           One Apps
