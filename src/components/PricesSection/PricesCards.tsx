@@ -1,6 +1,7 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
 import Card, { CardProps } from './Card';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 const prices: CardProps[] = [
   {
@@ -333,6 +334,7 @@ export default function PricesCards() {
   const [hoverActive, setHoverActive] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [bgStyle, setBgStyle] = useState({});
+  const isMobile = useIsMobile();
 
   const updateBg = (index: number) => {
     const container = containerRef.current;
@@ -340,16 +342,21 @@ export default function PricesCards() {
     const card = container.children[index] as HTMLElement;
     if (!card) return;
 
+    const mobileSideOffset = isMobile ? 16 : 0; // отступ с каждой стороны на мобильных
+
     setBgStyle({
-      width: `${card.offsetWidth}px`,
+      width: `${card.offsetWidth - (mobileSideOffset * 2)}px`,
       height: `${card.offsetHeight}px`,
-      transform: `translateX(${card.offsetLeft}px)`,
+      transform: `translateX(${card.offsetLeft + mobileSideOffset}px) translateY(${card.offsetTop}px)`,
     });
   };
 
   useEffect(() => {
-    updateBg(active);
-  }, [active]);
+    // Небольшая задержка для обновления DOM
+    setTimeout(() => {
+      updateBg(active);
+    }, 50);
+  }, [active, isMobile]);
 
   useEffect(() => {
     if (hoverActive !== null) {
@@ -357,19 +364,32 @@ export default function PricesCards() {
     } else {
       updateBg(active);
     }
-  }, [hoverActive]);
+  }, [hoverActive, isMobile]);
+
+  // Обновляем фон при изменении размера экрана
+  useEffect(() => {
+    const handleResize = () => {
+      setTimeout(() => {
+        updateBg(active);
+      }, 100);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [active, isMobile]);
+
   const bgIndex = hoverActive !== null ? hoverActive : active;
 
   return (
-    <div className="relative mt-[64px] bg-bg-black80 p-[50px] rounded-[24px] overflow-hidden">
+    <div className="relative mt-[64px] bg-bg-black80 p-0 sm:p-[20px] md:p-[50px] rounded-none sm:rounded-[24px] overflow-hidden w-[calc(100%+80px)] -mx-[40px] sm:w-full sm:mx-0">
+      {/* Фон для десктопа и мобилки */}
       <div
-        className="absolute top-[50px] left-[50px] rounded-[20px] bg-white transition-all duration-500 ease-[cubic-bezier(0.45,0,0.55,1)]"
+        className="absolute top-0 left-0 sm:top-[20px] sm:left-[20px] md:top-[50px] md:left-[50px] rounded-[16px] sm:rounded-[20px] bg-white transition-all duration-500 ease-[cubic-bezier(0.45,0,0.55,1)]"
         style={bgStyle}
       />
 
       <div
         ref={containerRef}
-        className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-[20px]"
+        className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-[20px] px-0 sm:px-[12px] md:px-[24px]"
       >
         {prices.map((price, i) => (
           <Card

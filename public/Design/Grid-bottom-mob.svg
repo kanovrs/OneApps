@@ -1,0 +1,54 @@
+<svg width="390" height="94" viewBox="0 0 390 94" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_2032_5999" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-40" y="0" width="94" height="94">
+<path d="M-40 0H54V94H-40V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_2032_5999)">
+<path d="M54.0001 94V94.6912H54.6916V94H54.0001ZM-39.9999 94H-40.6914V94.6912H-39.9999V94ZM53.3096 0V94H54.6916V0H53.3096ZM54.0001 93.3088H-39.9999V94.6912H54.0001V93.3088ZM-39.3094 94V0H-40.6914V94H-39.3094Z" fill="url(#paint0_linear_2032_5999)" fill-opacity="0.2"/>
+</g>
+<mask id="mask1_2032_5999" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="54" y="0" width="94" height="94">
+<path d="M54 0H148V94H54V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask1_2032_5999)">
+<path d="M147.999 94V94.6912H148.691V94H147.999ZM53.9991 94H53.3086V94.6912H53.9991V94ZM147.308 0V94H148.691V0H147.308ZM147.999 93.3088H53.9991V94.6912H147.999V93.3088ZM54.6906 94V0H53.3086V94H54.6906Z" fill="url(#paint1_linear_2032_5999)" fill-opacity="0.2"/>
+</g>
+<mask id="mask2_2032_5999" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="148" y="0" width="94" height="94">
+<path d="M148 0H242V94H148V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask2_2032_5999)">
+<path d="M241.999 94V94.6912H242.691V94H241.999ZM147.999 94H147.309V94.6912H147.999V94ZM241.308 0V94H242.691V0H241.308ZM241.999 93.3088H147.999V94.6912H241.999V93.3088ZM148.691 94V0H147.309V94H148.691Z" fill="url(#paint2_linear_2032_5999)" fill-opacity="0.2"/>
+</g>
+<mask id="mask3_2032_5999" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="242" y="0" width="94" height="94">
+<path d="M242 0H336V94H242V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask3_2032_5999)">
+<path d="M336 94V94.6912H336.691V94H336ZM242 94H241.309V94.6912H242V94ZM335.309 0V94H336.691V0H335.309ZM336 93.3088H242V94.6912H336V93.3088ZM242.692 94V0H241.309V94H242.692Z" fill="url(#paint3_linear_2032_5999)" fill-opacity="0.2"/>
+</g>
+<mask id="mask4_2032_5999" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="336" y="0" width="94" height="94">
+<path d="M336 0H430V94H336V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask4_2032_5999)">
+<path d="M430 94V94.6912H430.692V94H430ZM336 94H335.309V94.6912H336V94ZM429.31 0V94H430.692V0H429.31ZM430 93.3088H336V94.6912H430V93.3088ZM336.691 94V0H335.309V94H336.691Z" fill="url(#paint4_linear_2032_5999)" fill-opacity="0.2"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2032_5999" x1="7.00058" y1="0" x2="7.00058" y2="94" gradientUnits="userSpaceOnUse">
+<stop offset="0.0292777" stop-color="white" stop-opacity="0"/>
+<stop offset="0.995147" stop-color="#CCCCCC"/>
+</linearGradient>
+<linearGradient id="paint1_linear_2032_5999" x1="100.999" y1="0" x2="100.999" y2="94" gradientUnits="userSpaceOnUse">
+<stop offset="0.0292777" stop-color="white" stop-opacity="0"/>
+<stop offset="0.995147" stop-color="#CCCCCC"/>
+</linearGradient>
+<linearGradient id="paint2_linear_2032_5999" x1="194.999" y1="0" x2="194.999" y2="94" gradientUnits="userSpaceOnUse">
+<stop offset="0.0292777" stop-color="white" stop-opacity="0"/>
+<stop offset="0.995147" stop-color="#CCCCCC"/>
+</linearGradient>
+<linearGradient id="paint3_linear_2032_5999" x1="289" y1="0" x2="289" y2="94" gradientUnits="userSpaceOnUse">
+<stop offset="0.0292777" stop-color="white" stop-opacity="0"/>
+<stop offset="0.995147" stop-color="#CCCCCC"/>
+</linearGradient>
+<linearGradient id="paint4_linear_2032_5999" x1="383.001" y1="0" x2="383.001" y2="94" gradientUnits="userSpaceOnUse">
+<stop offset="0.0292777" stop-color="white" stop-opacity="0"/>
+<stop offset="0.995147" stop-color="#CCCCCC"/>
+</linearGradient>
+</defs>
+</svg>

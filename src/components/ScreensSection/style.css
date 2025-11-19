@@ -1,0 +1,29 @@
+@media (max-width: 768px) {
+  .mobile-scale {
+    transform: scale(0.55);
+    transform-origin: top center;
+  }
+
+  .mobile-height {
+    height: 200vh;
+  }
+
+  .phone-wrapper {
+    transform: translateX(-50%) scale(0.7);
+    transform-origin: center;
+  }
+
+  .screens-loop {
+    transform: scale(0.6);
+    transform-origin: center;
+  }
+
+  .left-fade,
+  .right-fade {
+    width: 10% !important;
+  }
+
+  .botom-fade {
+    height: 25% !important;
+  }
+}

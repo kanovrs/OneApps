@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function MockUp() {
   return (
-    <div className="relative flex flex-col items-center group pr-[80px]">
+    <div className="relative flex flex-col items-center group md:pr-[80px]">
       {/* Подсветка под всем */}
       <div className="absolute bottom-[-5px] -translate-x-0 z-0">
         <div
@@ -59,7 +59,7 @@ export default function MockUp() {
               />
             </div>
 
-            {/* Банан над карточкой */}
+            {/* Банан над карточки */}
             <div className="absolute -top-[35px] left-[35px] -translate-x-1/2 rotate-[80deg] w-[40px] h-[40px] z-20 pointer-events-none transition-transform duration-500 ease-in-out group-hover:scale-[2] group-hover:-translate-y-[20px] ">
               <Image
                 src="/Design/MockUp/banana.png"
@@ -141,7 +141,7 @@ export default function MockUp() {
               className="relative z-10"
             />
 
-            {/* Банан над карточкой */}
+            {/* Банан над карточки */}
             <div className="absolute -top-[10px] left-full -translate-x-1/2 w-[60px] h-[60px] z-20 pointer-events-none transition-all duration-700 ease-in-out group-hover:scale-[2] group-hover:translate-y-[-20px]">
               <Image
                 src="/Design/MockUp/banana.png"

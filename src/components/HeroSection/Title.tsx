@@ -1,7 +1,6 @@
 export default function Title() {
   return (
-    <div className="w-[860px]">
-      {' '}
+    <div className="w-full md:w-[860px]">
       <svg
         viewBox="0 0 860 250"
         width="100%"
@@ -9,6 +8,7 @@ export default function Title() {
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-label="One Apps"
+        className="md:max-w-none max-w-[342px] mx-auto md:mx-0"
       >
         <defs>
           <linearGradient
@@ -39,6 +39,13 @@ export default function Title() {
           dominantBaseline="middle"
           fill="url(#rotatingGradient)"
           className="uppercase gradient-text"
+          style={{
+            fontSize: '300px',
+            fontWeight: 600,
+            fontStyle: 'normal', 
+            lineHeight: '100px',
+            letterSpacing: '-0.5px',
+          }}
         >
           One Apps
         </text>

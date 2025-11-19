@@ -1,9 +1,8 @@
 interface TagProps {
   text: string;
   square: boolean;
-  active?: boolean;
 }
-export default function Tag({ text, square, active = false }: TagProps) {
+export default function Tag({ text, square }: TagProps) {
   return (
     <div className="text-neutral-30 flex items-center gap-[4px] uppercase text-sup font-semibold ">
       {square ? (

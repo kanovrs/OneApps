@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useAnimation, useInView } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 import Tag from '../Tag';
@@ -13,6 +13,7 @@ interface ProgressBarProps {
   delay?: number;
   color?: string;
   isHovered?: boolean;
+  isMobile?: boolean;
 }
 export default function ProgressBar({
   label,
@@ -21,6 +22,7 @@ export default function ProgressBar({
   delay = 0,
   color = 'bg-bg-yellow',
   isHovered = false,
+  isMobile = false,
 }: ProgressBarProps) {
   const ref = useRef(null);
   const controls = useAnimation();
@@ -55,7 +57,7 @@ export default function ProgressBar({
         animate={textControls}
         className="absolute flex flex-col items-start top-1/2 -translate-y-1/2 text-sm font-medium px-2 whitespace-nowrap pl-[20px]"
       >
-        <div className={`text-[24px] font-bolt mb-[12px] transition-colors duration-300 ${
+        <div className={`${isMobile ? 'text-[20px]' : 'text-[24px]'} font-bolt mb-[12px] transition-colors duration-300 whitespace-pre-line ${
           isHovered ? 'text-primary-yellow' : 'text-white'
         }`}>
           {label}

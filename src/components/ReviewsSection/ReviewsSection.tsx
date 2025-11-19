@@ -7,7 +7,7 @@ import { mobileReviews } from './reviews-data';
 
 export default function ReviewsSection() {
   return (
-    <section className="mt-[120px] md:mt-[180px] overflow-hidden -mx-[50vw] relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] max-w-none w-screen md:w-auto md:mx-0 md:left-auto md:right-auto md:max-w-full">
+    <section className="mt-[64px] md:mt-[180px] overflow-hidden -mx-[50vw] relative left-1/2 right-1/2 ml-[-50vw] mr-[-50vw] max-w-none w-screen md:w-auto md:mx-0 md:left-auto md:right-auto md:max-w-full">
       <div className="flex flex-col items-center gap-[8px] py-[32px] mb-[60px] md:mb-[32px] relative z-30">
         <Tag square={true} text="[: android app" />
         <h2 className="text-center font-bold uppercase text-neutral-20 text-[32px] md:text-h2">

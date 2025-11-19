@@ -1,10 +1,14 @@
 import Image from 'next/image';
 import { motion, useTransform, MotionValue } from 'framer-motion';
+import { useIsMobile } from '@/hooks/useIsMobile';
+
 type Props = {
   scrollProgress: MotionValue<number>;
 };
+
 export default function PhoneMockup({ scrollProgress }: Props) {
-  console.log(scrollProgress);
+  const isMobile = useIsMobile();
+
   const scale = useTransform(scrollProgress, [0.1, 0.9], [1, 2]);
   const scaleDrago = useTransform(scrollProgress, [0.4, 0.85], [0.2, 1]);
   const opacityDrago = useTransform(scrollProgress, [0.4, 0.85], [0, 1]);
@@ -13,13 +17,26 @@ export default function PhoneMockup({ scrollProgress }: Props) {
   return (
     <div className="absolute z-40 left-1/2 -translate-x-1/2 flex items-center justify-center ">
       {/* Телефон */}
-      <div className="relative w-[302px] h-[655px] overflow-visible">
+      <div
+        className="relative overflow-visible"
+        style={isMobile ? {
+          width: '81.856px',
+          height: '177.851px',
+          borderRadius: '2.17px',
+        } : {
+          width: '302px',
+          height: '655px',
+        }}
+      >
         <Image
           src={'/screens/phone.png'}
           alt="PhoneMockup"
           fill
           className="object-cover"
-          sizes="(max-width: 1285px) 15vw, 200px"
+          sizes="(max-width: 768px) 81.856px, 302px"
+          style={isMobile ? {
+            borderRadius: '2.17px',
+          } : {}}
         />
 
         {/* Карточки поверх телефона */}
@@ -27,22 +44,46 @@ export default function PhoneMockup({ scrollProgress }: Props) {
           style={{
             scale: scale,
           }}
-          className="absolute bottom-[10%] left-0 w-full flex flex-row justify-between gap-[10px] z-40"
+          className="absolute bottom-[10%] left-0 w-full flex flex-row justify-between gap-[2px] md:gap-[10px] z-40"
         >
           <div
-            className="relative w-1/3 h-[160px]"
-            style={{
+            className="relative overflow-visible"
+            style={isMobile ? {
+              width: '23.08px',
+              height: '41.031px',
+              borderRadius: '2.17px',
               boxShadow:
-                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1);',
+                '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
+            } : {
+              width: 'calc(33.333% - 6.67px)',
+              height: '160px',
+              boxShadow:
+                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
-            <Image
-              src={'/screens/phone1.png'}
-              alt={`screen 1`}
-              fill
-              className="object-cover rounded-[10px] overflow-hidden"
-            />
-            <div className="absolute w-[90px] h-[60px] bottom-0 left-[-20px] z-30">
+            <div className={`absolute inset-0 overflow-hidden ${isMobile ? '' : 'rounded-[10px]'}`} style={isMobile ? { borderRadius: '2.17px' } : {}}>
+              <Image
+                src={'/screens/phone1.png'}
+                alt={`screen 1`}
+                fill
+                className="object-cover"
+                style={isMobile ? {
+                  borderRadius: '2.17px',
+                } : {}}
+              />
+            </div>
+            <div
+              className="absolute bottom-0 z-30"
+              style={isMobile ? {
+                width: '14px',
+                height: '9px',
+                left: '2px',
+              } : {
+                width: '90px',
+                height: '60px',
+                left: '-20px',
+              }}
+            >
               <Image
                 src={'/screens/drago.png'}
                 alt={`screen 1`}
@@ -55,8 +96,17 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               style={{
                 scale: scaleDrago,
                 opacity: opacityDrago,
+                ...(isMobile ? {
+                  width: '36px',
+                  height: '22px',
+                  left: '0px',
+                } : {
+                  width: '230px',
+                  height: '140px',
+                  left: '-55px',
+                }),
               }}
-              className="absolute w-[230px] h-[140px] bottom-0 left-[-55px] z-20"
+              className="absolute bottom-0 z-20"
             >
               <Image
                 src={'/screens/drago-gold.png'}
@@ -67,10 +117,19 @@ export default function PhoneMockup({ scrollProgress }: Props) {
             </motion.div>
           </div>
           <div
-            className="relative w-1/3 h-[160px] rounded-[10px] overflow-hidden"
-            style={{
+            className="relative overflow-hidden"
+            style={isMobile ? {
+              width: '23.08px',
+              height: '41.031px',
+              borderRadius: '2.17px',
               boxShadow:
-                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1);',
+                '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
+            } : {
+              width: 'calc(33.333% - 6.67px)',
+              height: '160px',
+              borderRadius: '10px',
+              boxShadow:
+                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
             <Image
@@ -78,13 +137,25 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               alt={`screen 2`}
               fill
               className="object-cover"
+              style={isMobile ? {
+                borderRadius: '2.17px',
+              } : {}}
             />
           </div>
           <div
-            className="relative w-1/3 h-[160px] rounded-[10px] overflow-hidden"
-            style={{
+            className="relative overflow-hidden"
+            style={isMobile ? {
+              width: '23.08px',
+              height: '41.031px',
+              borderRadius: '2.17px',
               boxShadow:
-                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1);',
+                '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
+            } : {
+              width: 'calc(33.333% - 6.67px)',
+              height: '160px',
+              borderRadius: '10px',
+              boxShadow:
+                '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
             <Image
@@ -92,6 +163,9 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               alt={`screen 3`}
               fill
               className="object-cover"
+              style={isMobile ? {
+                borderRadius: '2.17px',
+              } : {}}
             />
           </div>
         </motion.div>
@@ -99,10 +173,23 @@ export default function PhoneMockup({ scrollProgress }: Props) {
         <motion.div
           style={{
             scale: scaleFire,
+            ...(isMobile ? {
+              bottom: '5%',
+            } : {
+              bottom: '20%',
+            }),
           }}
-          className="absolute bottom-[10%] left-0 w-full flex flex-row justify-between gap-[10px] z-30 "
+          className="absolute left-0 w-full flex flex-row justify-between gap-[10px] z-30 "
         >
-          <div className="w-[600px] h-[300px]">
+          <div
+            style={isMobile ? {
+              width: '300px',
+              height: '150px',
+            } : {
+              width: '600px',
+              height: '300px',
+            }}
+          >
             <Image
               src="/screens/fire.png"
               alt="Fire"
