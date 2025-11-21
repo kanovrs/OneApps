@@ -48,8 +48,8 @@ export default function ProgressBar({
       <motion.div
         initial={{ width: 0 }}
         animate={controls}
-        className={`absolute left-0 top-0 h-full ${color} rounded transition-colors duration-300 ${
-          isHovered ? 'bg-primary-yellow' : ''
+        className={`absolute left-0 top-0 h-full rounded transition-colors duration-300 ${
+          isHovered && color === 'bg-bg-yellow' ? 'bg-primary-yellow' : color
         }`}
       />
       <motion.div
