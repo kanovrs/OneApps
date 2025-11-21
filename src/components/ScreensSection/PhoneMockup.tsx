@@ -20,9 +20,9 @@ export default function PhoneMockup({ scrollProgress }: Props) {
       <div
         className="relative overflow-visible"
         style={isMobile ? {
-          width: '81.856px',
-          height: '177.851px',
-          borderRadius: '2.17px',
+          width: '180px',
+          height: '391px',
+          borderRadius: '4px',
         } : {
           width: '302px',
           height: '655px',
@@ -33,9 +33,9 @@ export default function PhoneMockup({ scrollProgress }: Props) {
           alt="PhoneMockup"
           fill
           className="object-cover"
-          sizes="(max-width: 768px) 81.856px, 302px"
+          sizes="(max-width: 768px) 180px, 302px"
           style={isMobile ? {
-            borderRadius: '2.17px',
+            borderRadius: '4px',
           } : {}}
         />
 
@@ -49,9 +49,9 @@ export default function PhoneMockup({ scrollProgress }: Props) {
           <div
             className="relative overflow-visible"
             style={isMobile ? {
-              width: '23.08px',
-              height: '41.031px',
-              borderRadius: '2.17px',
+              width: '50px',
+              height: '89px',
+              borderRadius: '4px',
               boxShadow:
                 '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
             } : {
@@ -61,23 +61,23 @@ export default function PhoneMockup({ scrollProgress }: Props) {
                 '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
-            <div className={`absolute inset-0 overflow-hidden ${isMobile ? '' : 'rounded-[10px]'}`} style={isMobile ? { borderRadius: '2.17px' } : {}}>
+            <div className={`absolute inset-0 overflow-hidden ${isMobile ? '' : 'rounded-[10px]'}`} style={isMobile ? { borderRadius: '4px' } : {}}>
               <Image
                 src={'/screens/phone1.png'}
                 alt={`screen 1`}
                 fill
                 className="object-cover"
                 style={isMobile ? {
-                  borderRadius: '2.17px',
+                  borderRadius: '4px',
                 } : {}}
               />
             </div>
             <div
               className="absolute bottom-0 z-30"
               style={isMobile ? {
-                width: '14px',
-                height: '9px',
-                left: '2px',
+                width: '30px',
+                height: '20px',
+                left: '4px',
               } : {
                 width: '90px',
                 height: '60px',
@@ -97,8 +97,8 @@ export default function PhoneMockup({ scrollProgress }: Props) {
                 scale: scaleDrago,
                 opacity: opacityDrago,
                 ...(isMobile ? {
-                  width: '36px',
-                  height: '22px',
+                  width: '78px',
+                  height: '48px',
                   left: '0px',
                 } : {
                   width: '230px',
@@ -119,9 +119,9 @@ export default function PhoneMockup({ scrollProgress }: Props) {
           <div
             className="relative overflow-hidden"
             style={isMobile ? {
-              width: '23.08px',
-              height: '41.031px',
-              borderRadius: '2.17px',
+              width: '50px',
+              height: '89px',
+              borderRadius: '4px',
               boxShadow:
                 '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
             } : {
@@ -138,16 +138,16 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               fill
               className="object-cover"
               style={isMobile ? {
-                borderRadius: '2.17px',
+                borderRadius: '4px',
               } : {}}
             />
           </div>
           <div
             className="relative overflow-hidden"
             style={isMobile ? {
-              width: '23.08px',
-              height: '41.031px',
-              borderRadius: '2.17px',
+              width: '50px',
+              height: '89px',
+              borderRadius: '4px',
               boxShadow:
                 '0px 0px 10px 11px rgba(0, 0, 0, 0.25), 0px 0px 10px 0px rgba(0, 0, 0, 1)',
             } : {
@@ -164,7 +164,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               fill
               className="object-cover"
               style={isMobile ? {
-                borderRadius: '2.17px',
+                borderRadius: '4px',
               } : {}}
             />
           </div>

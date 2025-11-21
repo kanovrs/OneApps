@@ -28,9 +28,9 @@ export default function ScreensSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[300vh] bg-[#0a0a0a] w-[calc(100%+80px)] -mx-[40px] md:w-full md:mx-0"
+      className="relative h-[150vh] md:h-[300vh] bg-[#0a0a0a] w-[calc(100%+80px)] -mx-[40px] md:w-full md:mx-0"
     >
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-visible w-full">
+      <div className="sticky top-0 h-[calc(100vh-200px)] md:h-screen flex items-center justify-center overflow-visible w-full">
         <div
           className="absolute inset-y-0 left-0 w-0 md:w-[15%] pointer-events-none z-[60] left-fade"
           style={{

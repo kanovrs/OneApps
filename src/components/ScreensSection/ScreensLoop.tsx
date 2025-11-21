@@ -6,9 +6,9 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 type Props = { images: string[]; speed?: number };
 
 const slotWidthsPx = [85, 112, 133, 133, 133, 133, 112, 85];
-const slotWidthsPxMobile = [27, 30, 36, 36, 36, 36, 30, 27];
+const slotWidthsPxMobile = [120, 120];
 const GAP_PX = 51;
-const GAP_PX_MOBILE = 16;
+const GAP_PX_MOBILE = 20;
 const CONTAINER_MAX_WIDTH = 1285;
 
 export default function ScreensLoop({ images, speed = 3000 }: Props) {
@@ -28,7 +28,9 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
 
   useEffect(() => {
     if (!images.length) return;
-    const slotCount = isMobile ? slotWidthsPxMobile.length : slotWidthsPx.length;
+    const slotCount = isMobile
+      ? slotWidthsPxMobile.length
+      : slotWidthsPx.length;
     setOrder(images.slice(0, slotCount).map((_, i) => i));
 
     const interval = setInterval(() => {
@@ -49,7 +51,6 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
   const centerIndex = Math.floor(widths.length / 2);
 
   const getSlotStyle = (index: number) => {
-
     let leftPosition = 0;
     for (let i = 0; i < index; i++) {
       leftPosition += widths[i] + gap;
@@ -60,11 +61,22 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
     const centerOffset = (maxWidth - totalWidth) / 2;
     leftPosition += centerOffset;
 
-    const leftPercent = (leftPosition / maxWidth) * 100;
-    const widthPercent = (widths[index] / maxWidth) * 100;
-    const heightPercent = ((widths[index] * 1.78) / maxWidth) * 100; // 237/133 ≈ 1.78
+    let sideOffset = 0;
+    if (isMobile) {
+      if (index === 0) {
+        sideOffset = -60;
+      } else if (index === widths.length - 1) {
+        sideOffset = 60;
+      }
+    }
 
-    const zIndex = 10 - Math.abs(centerIndex - index);
+    const leftPercent = ((leftPosition + sideOffset) / maxWidth) * 100;
+    const widthPercent = (widths[index] / maxWidth) * 100;
+
+    const heightMultiplier = 1.78;
+    const heightPercent = ((widths[index] * heightMultiplier) / maxWidth) * 100;
+
+    const zIndex = 50 - Math.abs(centerIndex - index);
     const opacity = 1 - Math.abs(centerIndex - index) * 0.1;
 
     return {
@@ -75,10 +87,11 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
       paddingBottom: `${heightPercent}%`,
       zIndex,
       opacity,
+      position: 'absolute' as const,
     };
   };
 
-  const centerHeight = (widths[centerIndex] * 1.78 / maxWidth) * 100;
+  const centerHeight = ((widths[centerIndex] * 1.78) / maxWidth) * 100;
   const paddingBottom = `${centerHeight}%`;
 
   return (
@@ -87,15 +100,17 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
       style={{
         maxWidth: `${maxWidth}px`,
         paddingBottom: paddingBottom,
+        isolation: 'isolate',
       }}
     >
       {order.map((imgIdx, i) => (
         <div
-          key={imgIdx}
+          key={`${imgIdx}-${i}`}
           className="absolute overflow-hidden transition-all duration-500"
           style={{
             ...getSlotStyle(i),
             borderRadius: isMobile ? '4px' : '16px',
+            backgroundColor: '#0a0a0a',
           }}
         >
           <div className="absolute inset-0">
