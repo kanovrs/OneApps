@@ -81,8 +81,8 @@ export default function TechnicalSection() {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/test-download.txt';
-    link.download = 'test-download.txt';
+    link.href = '/Presentation for OneApps partners.pdf';
+    link.download = 'Presentation for OneApps partners.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
