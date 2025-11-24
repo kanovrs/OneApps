@@ -6,6 +6,7 @@ interface ButtonProps {
   side?: 'right' | 'left';
   saleBtn?: boolean;
   icon?: string;
+  onClick?: () => void;
 }
 
 const ArrowIcon = () => (
@@ -31,6 +32,7 @@ export default function Button({
   side = 'right',
   saleBtn = false,
   icon,
+  onClick,
 }: ButtonProps) {
   const ArrowContent = icon ? (
     <Image src={icon} alt="icon" width={16} height={16} />
@@ -45,6 +47,7 @@ export default function Button({
         className={`animated-button ${
           side === 'left' ? 'left-side' : 'right-side'
         }`}
+        onClick={onClick}
       >
         {side === 'left' && <span className="arow">{ArrowContent}</span>}
 

@@ -79,6 +79,15 @@ export default function TechnicalSection() {
     setActiveItem(activeItem === itemId ? null : itemId);
   };
 
+  const handleDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/test-download.txt';
+    link.download = 'test-download.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="mt-[64px] md:mt-[180px]">
       <SectionHeader tag="[: СЕРВІС" title="Що ви отримаєте з OneApps" />
@@ -103,6 +112,7 @@ export default function TechnicalSection() {
             side="right"
             saleBtn={false}
             icon="/Design/arrow-d.svg"
+            onClick={handleDownload}
           />
         </div>
       </div>
