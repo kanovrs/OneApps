@@ -19,6 +19,7 @@ const screens = [
 
 export default function ScreensSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

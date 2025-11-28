@@ -12,7 +12,11 @@ export default function PhoneMockup({ scrollProgress }: Props) {
   const scale = useTransform(scrollProgress, [0.1, 0.9], [1, 2]);
   const scaleDrago = useTransform(scrollProgress, [0.4, 0.85], [0.2, 1]);
   const opacityDrago = useTransform(scrollProgress, [0.4, 0.85], [0, 1]);
-  const scaleFire = useTransform(scrollProgress, [0.5, 0.95], [0, 4]);
+  const scaleFire = useTransform(
+    scrollProgress,
+    [0.5, 0.95],
+    [0, isMobile ? 2 : 4]
+  );
 
   return (
     <div className="absolute z-40 left-1/2 -translate-x-1/2 flex items-center justify-center ">
