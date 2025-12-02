@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { phoneScreens, sideScreens, SCREEN_CONFIG } from './screens';
@@ -160,7 +160,7 @@ export default function InteractiveScreensSection() {
         }}
       />
 
-      <div 
+      <div
         className={`flex items-center justify-center h-full w-full ${
           isMobile ? 'relative inset-x-0' : 'relative'
         }`}
@@ -273,7 +273,6 @@ export default function InteractiveScreensSection() {
     </section>
   );
 }
-
 function PhoneScreen({
   currentIndex,
   isMobile,
@@ -285,50 +284,146 @@ function PhoneScreen({
     ? { width: 183, height: 391 }
     : { width: 366, height: 782 };
 
+  useEffect(() => {
+    phoneScreens.forEach((src) => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = typeof src === 'string' ? src : src;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   return (
     <div
-      className="relative z-20 pointer-events-none"
+      className="relative z-20 pointer-events-none select-none"
       style={{ width: `${phoneSize.width}px`, height: `${phoneSize.height}px` }}
     >
+      {/* Корпус телефона */}
       <Image
         src="/Design/productionReady-card/image2.png"
-        alt="Phone"
+        alt="Phone frame"
         fill
         priority
         className="object-contain"
       />
-      <motion.div
+
+      {/* Экран */}
+      <div
         className={`absolute inset-x-[4.2%] inset-y-[1.2%] overflow-hidden bg-black ${
-          isMobile ? 'rounded-[16px]' : 'rounded-[22px]'
+          isMobile ? 'rounded-[16px]' : 'rounded-[32px]'
         }`}
         style={{
-          WebkitMaskImage: isMobile
+          maskImage: isMobile
             ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
             : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
-          maskImage: isMobile
+          WebkitMaskImage: isMobile
             ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
             : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
         }}
       >
-        <motion.div
-          key={currentIndex}
-          initial={{ filter: 'blur(8px)', opacity: 0 }}
-          animate={{ filter: 'blur(0px)', opacity: 1 }}
-          exit={{ filter: 'blur(8px)', opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0"
-        >
-          <Image
-            src={phoneScreens[currentIndex]}
-            alt={`screen-${currentIndex}`}
-            fill
-            className="object-cover"
-          />
-        </motion.div>
-      </motion.div>
+        <AnimatePresence initial={false}>
+          {/* Предыдущий экран (остаётся пока новый грузится) */}
+          <motion.div
+            key={currentIndex + '_prev'}
+            initial={false}
+            animate={{ opacity: currentIndex > 0 ? 1 : 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={
+                phoneScreens[
+                  (currentIndex - 1 + phoneScreens.length) % phoneScreens.length
+                ]
+              }
+              alt=""
+              fill
+              className="object-cover"
+              unoptimized
+              priority={false}
+            />
+          </motion.div>
+
+          {/* Текущий экран */}
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: 'easeInOut' }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={phoneScreens[currentIndex]}
+              alt={`Screen ${currentIndex + 1}`}
+              fill
+              className="object-cover"
+              unoptimized
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
+// function PhoneScreen({
+//   currentIndex,
+//   isMobile,
+// }: {
+//   currentIndex: number;
+//   isMobile: boolean;
+// }) {
+//   const phoneSize = isMobile
+//     ? { width: 183, height: 391 }
+//     : { width: 366, height: 782 };
+
+//   return (
+//     <div
+//       className="relative z-20 pointer-events-none"
+//       style={{ width: `${phoneSize.width}px`, height: `${phoneSize.height}px` }}
+//     >
+//       <Image
+//         src="/Design/productionReady-card/image2.png"
+//         alt="Phone"
+//         fill
+//         priority
+//         className="object-contain"
+//       />
+//       <motion.div
+//         className={`absolute inset-x-[4.2%] inset-y-[1.2%] overflow-hidden bg-black ${
+//           isMobile ? 'rounded-[16px]' : 'rounded-[22px]'
+//         }`}
+//         style={{
+//           WebkitMaskImage: isMobile
+//             ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
+//             : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+//           maskImage: isMobile
+//             ? 'radial-gradient(circle 4px at 50% 2.2%, transparent 4.5px, black 5px)'
+//             : 'radial-gradient(circle 8px at 50% 2.2%, transparent 9px, black 9.5px)',
+//         }}
+//       >
+//         <motion.div
+//           key={currentIndex}
+//           initial={{ filter: 'blur(8px)', opacity: 0 }}
+//           animate={{ filter: 'blur(0px)', opacity: 1 }}
+//           exit={{ filter: 'blur(8px)', opacity: 0 }}
+//           transition={{ duration: 0.5 }}
+//           className="absolute inset-0"
+//         >
+//           <Image
+//             src={phoneScreens[currentIndex]}
+//             alt={`screen-${currentIndex}`}
+//             fill
+//             className="object-cover"
+//           />
+//         </motion.div>
+//       </motion.div>
+//     </div>
+//   );
+// }
 
 function SideScreen({
   src,
