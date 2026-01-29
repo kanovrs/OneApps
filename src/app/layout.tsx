@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Alumni_Sans, Inter } from 'next/font/google';
+import Analytics from '../components/Metrics/Analytics';
 import './globals.css';
 
 const inter = Inter({
@@ -30,7 +31,10 @@ export default function RootLayout({
       className={`${inter.variable} ${alumni.variable} antialiased`}
       suppressHydrationWarning
     >
-      <body className="bg-bg-black">{children}</body>
+      <body className="bg-bg-black">
+        <Analytics gaId="G-JFR75PSGYP" clarityId="v8y9anztsk" />
+        {children}
+      </body>
     </html>
   );
 }
