@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Alumni_Sans, Inter } from 'next/font/google';
-import { GoogleAnalytics } from 'nextjs-google-analytics';
-import ClarityInit from '../components/ClarityInit';
+import Analytics from '../components/Metrics/Analytics';
 import './globals.css';
 
 const inter = Inter({
@@ -33,8 +32,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-bg-black">
-        <GoogleAnalytics gaMeasurementId="G-JFR75PSGYP" trackPageViews />
-        <ClarityInit clarityId="v8y9anztsk" />
+        <Analytics gaId="G-JFR75PSGYP" clarityId="v8y9anztsk" />
         {children}
       </body>
     </html>
