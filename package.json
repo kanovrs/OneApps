@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "bun run --bun next dev --turbopack",
     "build": "bun run --bun next build --turbopack",
-    "start": "bun run --bun next start -p 4321",
+    "start": "bunx serve out -p 4321",
     "lint": "eslint"
   },
   "dependencies": {
