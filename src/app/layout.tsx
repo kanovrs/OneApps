@@ -32,7 +32,8 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="bg-bg-black">
-        <Analytics gaId="G-JFR75PSGYP" clarityId="v8y9anztsk" />
+        <Analytics gaId="G-SJ0W1B6RE6
+" clarityId="v8y9anztsk" />
         {children}
       </body>
     </html>
