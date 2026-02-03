@@ -10,7 +10,7 @@ function* walk(dir) {
   for (const e of entries) {
     const full = path.join(dir, e.name);
     if (e.isDirectory()) yield* walk(full);
-    else if (ext.test(e.name)) yield full;
+    else if (ext.test(e.name) && !/^favicon\.(png|jpe?g)$/i.test(e.name)) yield full;
   }
 }
 
