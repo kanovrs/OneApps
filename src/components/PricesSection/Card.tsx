@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Button from '../Button/Button';
+import Link from "next/link";
+import Button from "../Button/Button";
 
 export interface CardProps {
   title: string;
@@ -12,8 +12,8 @@ export interface CardProps {
   active?: boolean;
   isUnderBg?: boolean;
   onClick?: () => void;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
+  onPointerEnter?: (e: React.PointerEvent<HTMLDivElement>) => void;
+  onPointerLeave?: (e: React.PointerEvent<HTMLDivElement>) => void;
 }
 
 export default function Card({
@@ -27,28 +27,28 @@ export default function Card({
   active,
   isUnderBg,
   onClick,
-  onMouseEnter,
-  onMouseLeave,
+  onPointerEnter,
+  onPointerLeave,
 }: CardProps) {
   return (
     <div
       onClick={onClick}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onPointerEnter={onPointerEnter}
+      onPointerLeave={onPointerLeave}
       className={`card flex flex-col items-start gap-[24px] h-[850px]
         p-[40px] rounded-[16px] transition-all duration-500 cursor-pointer text-reg text-text-gray
         hover:scale-105
         group
-        ${active ? 'active ' : ''}
+        ${active ? "active " : ""}
         hover:text-black
-        ${isUnderBg ? 'text-black' : 'text-text-gray'}
+        ${isUnderBg ? "text-black" : "text-text-gray"}
       `}
     >
       <div className="flex flex-col gap-[12px]">
         <div className="flex items-center gap-[12px] ">
           <h4
             className={` ${
-              isUnderBg ? 'text-black' : 'text-neutral-10'
+              isUnderBg ? "text-black" : "text-neutral-10"
             } text-h3 font-bold`}
           >
             {title}
@@ -61,7 +61,7 @@ export default function Card({
       <div className="flex items-start text-[48px] font-bold transition-all duration-500">
         <span
           className={`block leading-none ${
-            isUnderBg ? 'text-bg-black' : 'text-primary-yellow'
+            isUnderBg ? "text-bg-black" : "text-primary-yellow"
           }`}
         >
           {price}
@@ -76,7 +76,7 @@ export default function Card({
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Button saleBtn={!!active} text={active ? 'Залишити заявку' : ''} />
+        <Button saleBtn={!!active} text={active ? "Залишити заявку" : ""} />
       </Link>
 
       <p className="">{text}</p>

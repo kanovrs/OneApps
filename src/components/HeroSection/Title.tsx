@@ -1,14 +1,15 @@
 export default function Title() {
   return (
-    <div className="w-[860px]">
-      {' '}
+    <h1 className="w-[860px]">
+      {" "}
+      <span className="sr-only">One Apps</span>
       <svg
         viewBox="0 0 860 250"
         width="100%"
         height="auto"
         xmlns="http://www.w3.org/2000/svg"
         role="img"
-        aria-label="One Apps"
+        aria-hidden="true"
       >
         <defs>
           <linearGradient
@@ -43,6 +44,6 @@ export default function Title() {
           One Apps
         </text>
       </svg>
-    </div>
+    </h1>
   );
 }

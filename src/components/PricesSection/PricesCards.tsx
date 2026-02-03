@@ -1,18 +1,18 @@
-'use client';
-import { useState, useRef, useEffect } from 'react';
-import Card, { CardProps } from './Card';
-import { useIsMobile } from '@/hooks/useIsMobile';
+"use client";
+import { useState, useRef, useEffect } from "react";
+import Card, { CardProps } from "./Card";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const prices: CardProps[] = [
   {
-    title: 'Starter',
+    title: "Starter",
     subTitle: (
       <>
         Для тестів Offers/Geo <br /> та швидких гіпотез
       </>
     ),
-    price: '$1600',
-    text: 'Заміна у разі технічної помилки протягом 72 годин',
+    price: "$1600",
+    text: "Заміна у разі технічної помилки протягом 72 годин",
     list: (
       <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
         <li className="flex items-start  gap-[8px]">
@@ -58,7 +58,7 @@ const prices: CardProps[] = [
         </li>
         <li className="flex items-start gap-[8px] line-through text-text-gray">
           <span
-            className={`mt-[4px] shrink-0 shrink-0
+            className={`mt-[4px] shrink-0
       relative w-[16px] h-[16px] 
       before:content-[''] before:absolute before:top-[3px] before:right-[4px]
       before:w-[9px] before:h-[2px]
@@ -85,18 +85,18 @@ const prices: CardProps[] = [
         </li>
       </ul>
     ),
-    pay: 'Оплата при запуску',
+    pay: "Оплата при запуску",
   },
   {
-    title: 'Pro',
+    title: "Pro",
     titleCard: (
       <span className="py-[4px] px-[12px] bg-bg-red rounded-[4px] text-primary-red text-[12px] leading-[20px]">
         Популярний вибір
       </span>
     ),
-    subTitle: 'Для команд з обсягами та кастомною логікою',
-    price: '$2500',
-    text: 'заміна при бані 5 днів або до 3k інсталів',
+    subTitle: "Для команд з обсягами та кастомною логікою",
+    price: "$2500",
+    text: "заміна при бані 5 днів або до 3k інсталів",
     list: (
       <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
         <li className="flex items-start gap-[8px]">
@@ -219,18 +219,18 @@ const prices: CardProps[] = [
         </li>
       </ul>
     ),
-    pay: '50% передоплата на старті  50% після передачі',
+    pay: "50% передоплата на старті  50% після передачі",
   },
   {
-    title: 'Max',
+    title: "Max",
     titleCard: (
       <span className="py-[4px] px-[12px] bg-primary-yellow rounded-[4px] text-bg-black text-[12px] leading-[20px]">
         Premium
       </span>
     ),
-    subTitle: 'Для команд з обсягами та кастомною логікою',
-    price: '$2800',
-    text: '1 безкоштовна заміна протягом 7 днів',
+    subTitle: "Для команд з обсягами та кастомною логікою",
+    price: "$2800",
+    text: "1 безкоштовна заміна протягом 7 днів",
     list: (
       <ul className="list-disc list-inside flex flex-col gap-[12px] text-reg">
         <li className="flex items-start gap-[8px]">
@@ -326,7 +326,7 @@ const prices: CardProps[] = [
         </li>
       </ul>
     ),
-    pay: '50% передоплата на старті  50% після передачі',
+    pay: "50% передоплата на старті  50% після передачі",
   },
 ];
 export default function PricesCards() {
@@ -345,7 +345,7 @@ export default function PricesCards() {
     const mobileSideOffset = isMobile ? 16 : 0; // отступ с каждой стороны на мобильных
 
     setBgStyle({
-      width: `${card.offsetWidth - (mobileSideOffset * 2)}px`,
+      width: `${card.offsetWidth - mobileSideOffset * 2}px`,
       height: `${card.offsetHeight}px`,
       transform: `translateX(${card.offsetLeft + mobileSideOffset}px) translateY(${card.offsetTop}px)`,
     });
@@ -373,8 +373,8 @@ export default function PricesCards() {
         updateBg(active);
       }, 100);
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [active, isMobile]);
 
   const bgIndex = hoverActive !== null ? hoverActive : active;
@@ -398,8 +398,16 @@ export default function PricesCards() {
             active={active === i}
             isUnderBg={bgIndex === i}
             onClick={() => setActive(i)}
-            onMouseEnter={() => setHoverActive(i)}
-            onMouseLeave={() => setHoverActive(null)}
+            onPointerEnter={(e) => {
+              if (e.pointerType === "mouse") {
+                setHoverActive(i);
+              }
+            }}
+            onPointerLeave={(e) => {
+              if (e.pointerType === "mouse") {
+                setHoverActive(null);
+              }
+            }}
           />
         ))}
       </div>
