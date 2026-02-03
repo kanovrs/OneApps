@@ -30,17 +30,18 @@ export default function Card({
   onPointerEnter,
   onPointerLeave,
 }: CardProps) {
+  
   return (
     <div
       onClick={onClick}
       onPointerEnter={onPointerEnter}
       onPointerLeave={onPointerLeave}
       className={`card flex flex-col items-start gap-[24px] h-[850px]
-        p-[40px] rounded-[16px] transition-all duration-500 cursor-pointer text-reg text-text-gray
-        hover:scale-105
+        p-[40px] rounded-[16px] transition-all duration-500 cursor-pointer text-reg 
+        md:hover:scale-105
         group
         ${active ? "active " : ""}
-        hover:text-black
+        md:hover:text-black
         ${isUnderBg ? "text-black" : "text-text-gray"}
       `}
     >

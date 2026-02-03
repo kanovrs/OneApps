@@ -1,7 +1,7 @@
-'use client';
-import ReviewBlock from './ReviewBlock';
-import WebPImage from '@/components/WebPImage';
-import { reviews } from './reviews-data';
+"use client";
+import ReviewBlock from "./ReviewBlock";
+import WebPImage from "@/components/WebPImage";
+import { reviews } from "./reviews-data";
 
 export default function ReviewsList() {
   return (
@@ -33,7 +33,7 @@ export default function ReviewsList() {
             reviewText={review.reviewText}
             avatarUrl={review.avatarUrl}
             animationClass={review.animationClass}
-            className="hover:scale-105 transition-transform duration-300 cursor-pointer"
+            className="hover:scale-105 transition-transform duration-300"
           />
         </div>
       ))}
