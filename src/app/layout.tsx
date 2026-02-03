@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   description:
     '📱Мобільні додатки готові до заливу вже сьогодні! З трекером, клоакою та пушами. Стабільна робота на наших аккаунтах що живуть довго. Оренда або викуп назавжди⚡',
   alternates: { canonical: 'https://oneapps.tech' },
+  icons: { icon: '/favicon.png' },
 };
 
 export default function RootLayout({
