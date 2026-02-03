@@ -10,25 +10,25 @@ export default function ContactUsSection() {
   const [error, setError] = useState("");
   const isMobile = useIsMobile();
 
-  // Функція маски, яка не ламає видалення (Backspace)
-  const formatPhone = (value: string) => {
-    const digits = value.replace(/\D/g, ""); // тільки цифри
-    if (!digits) return "";
+  // // Функція маски, яка не ламає видалення (Backspace)
+  // const formatPhone = (value: string) => {
+  //   const digits = value.replace(/\D/g, ""); // тільки цифри
+  //   if (!digits) return "";
 
-    // Формуємо маску +38 (0XX) XXX XX XX
-    let res = "+38 (0";
-    const mainPart = digits.startsWith("380")
-      ? digits.slice(3)
-      : digits.slice(1);
+  //   // Формуємо маску +38 (0XX) XXX XX XX
+  //   let res = "+38 (0";
+  //   const mainPart = digits.startsWith("380")
+  //     ? digits.slice(3)
+  //     : digits.slice(1);
 
-    for (let i = 0; i < mainPart.length && i < 9; i++) {
-      if (i === 2) res += ") ";
-      if (i === 5) res += " ";
-      if (i === 7) res += " ";
-      res += mainPart[i];
-    }
-    return res;
-  };
+  //   for (let i = 0; i < mainPart.length && i < 9; i++) {
+  //     if (i === 2) res += ") ";
+  //     if (i === 5) res += " ";
+  //     if (i === 7) res += " ";
+  //     res += mainPart[i];
+  //   }
+  //   return res;
+  // };
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -39,20 +39,12 @@ export default function ContactUsSection() {
       return;
     }
 
-    const formatted = formatPhone(input);
-    setPhone(formatted);
+    setPhone(input);
     if (error) setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const cleanDigits = phone.replace(/\D/g, "");
-
-    if (cleanDigits.length < 12) {
-      setError("Введіть коректний номер телефону");
-      return;
-    }
 
     try {
       const res = await fetch("http://91.247.36.48:3014/api/forms/submit", {
@@ -61,7 +53,7 @@ export default function ContactUsSection() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          phone: `+${cleanDigits}`,
+          phone: `${phone}`,
         }),
       });
 
@@ -118,8 +110,8 @@ export default function ContactUsSection() {
             >
               <div className="flex items-center">
                 <input
-                  type="tel"
-                  placeholder="Телефон"
+                  type="text"
+                  placeholder="Ваш Telegram"
                   value={phone}
                   onChange={handlePhoneChange}
                   className={`w-full bg-transparent outline-none text-text-light placeholder-text-dark placeholder:font-bold placeholder:text-[24px] placeholder:leading-[26px] py-3 text-reg autofill-clean ${
