@@ -2,7 +2,7 @@
 
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 
 import Tag from '../Tag';
 
@@ -65,7 +65,7 @@ export default function ProgressBar({
 
         <div className="flex items-center mb-1">
           <Tag square={true} text={tagText} />
-          <Image
+          <WebPImage
             src="/Design/arrow-right.svg"
             width={16}
             height={16}

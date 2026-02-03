@@ -69,7 +69,7 @@
 //               height: cfg.topCards.height,
 //             }}
 //           >
-//             <Image
+//             <WebPImage
 //               src={`/Design/productionReady-card/cards-sets/card-set-${currentSet}/card-${position}-${currentSet}.png`}
 //               alt={`card ${position}`}
 //               fill
@@ -103,7 +103,7 @@
 //                 }}
 //                 onClick={() => handleCardClick(index)}
 //               >
-//                 <Image
+//                 <WebPImage
 //                   src={`/Design/productionReady-card/category-cards/category-card-${
 //                     index + 1
 //                   }.png`}
@@ -134,7 +134,7 @@
 //   );
 // }
 'use client';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { useState, useEffect } from 'react';
 import { CARD_CONFIG } from './constants';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -222,7 +222,7 @@ export default function InteractiveCardsSection() {
                   height: cfg.topCards.height,
                 }}
               >
-                <Image
+                <WebPImage
                   src={`/Design/productionReady-card/cards-sets/card-set-${currentSet}/card-${position}-${currentSet}.png`}
                   alt={`card ${position}`}
                   fill
@@ -268,7 +268,7 @@ export default function InteractiveCardsSection() {
                 }}
                 onClick={() => handleCardClick(index)}
               >
-                <Image
+                <WebPImage
                   src={`/Design/productionReady-card/category-cards/category-card-${
                     index + 1
                   }.png`}

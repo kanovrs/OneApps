@@ -1,13 +1,13 @@
 'use client';
 import ReviewBlock from './ReviewBlock';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { reviews } from './reviews-data';
 
 export default function ReviewsList() {
   return (
     <div className="relative w-full h-[800px] md:h-[900px] lg:h-[1000px] flex items-center justify-center">
       <div className="relative z-10 w-[262px] h-[557px] flex items-center justify-center">
-        <Image
+        <WebPImage
           src="/Design/review-card/review-phone.svg"
           alt="Android Phone Mockup"
           width={262}

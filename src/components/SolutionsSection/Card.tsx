@@ -1,5 +1,5 @@
 import Tag from '../Tag';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 
 type CardProps = { tag: string; tittle?: string; text: string; image: string };
 
@@ -17,7 +17,7 @@ export default function Card({ tag, tittle, text, image }: CardProps) {
         <div className="flex flex-col gap-[8px]">
           <div className="flex items-center gap-[12px]">
             <Tag square={true} text={tag} />
-            <Image
+            <WebPImage
               src="/Design/arow-gray.png"
               width={16}
               height={16}
@@ -36,7 +36,7 @@ export default function Card({ tag, tittle, text, image }: CardProps) {
       {/* убраны паддинги у картинки на мобильных */}
       <div className="flex-grow flex items-center justify-center md:pt-[64px] md:pb-[32px]">
         <div className="relative w-full h-[200px] md:h-[382px]">
-          <Image src={image} alt="card-image" fill className="object-contain" />
+          <WebPImage src={image} alt="card-image" fill className="object-contain" />
         </div>
       </div>
     </div>

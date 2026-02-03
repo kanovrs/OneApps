@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 
 interface Item {
   id: string | number;
@@ -52,7 +52,7 @@ export default function AccordionItem({
             </span>
 
             <div className="relative w-4 h-4">
-              <Image
+              <WebPImage
                 src="/Design/arrow-up.svg"
                 alt="arrow up"
                 width={16}
@@ -63,7 +63,7 @@ export default function AccordionItem({
                     : 'opacity-0 rotate-180 scale-75'
                 }`}
               />
-              <Image
+              <WebPImage
                 src="/Design/arrow-down.svg"
                 alt="arrow down"
                 width={16}

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import './button.css';
 
 interface ButtonProps {
@@ -35,7 +35,7 @@ export default function Button({
   onClick,
 }: ButtonProps) {
   const ArrowContent = icon ? (
-    <Image src={icon} alt="icon" width={16} height={16} />
+    <WebPImage src={icon} alt="icon" width={16} height={16} />
   ) : (
     <ArrowIcon />
   );

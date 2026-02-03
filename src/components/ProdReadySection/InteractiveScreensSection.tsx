@@ -1,6 +1,6 @@
 'use client';
 import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { phoneScreens, sideScreens, SCREEN_CONFIG } from './screens';
 import { useIsMobile } from '@/hooks/useIsMobile';
@@ -300,7 +300,7 @@ function PhoneScreen({
       style={{ width: `${phoneSize.width}px`, height: `${phoneSize.height}px` }}
     >
       {/* Корпус телефона */}
-      <Image
+      <WebPImage
         src="/Design/productionReady-card/image2.png"
         alt="Phone frame"
         fill
@@ -332,7 +332,7 @@ function PhoneScreen({
             transition={{ duration: 0.6 }}
             className="absolute inset-0"
           >
-            <Image
+            <WebPImage
               src={
                 phoneScreens[
                   (currentIndex - 1 + phoneScreens.length) % phoneScreens.length
@@ -355,7 +355,7 @@ function PhoneScreen({
             transition={{ duration: 0.6, ease: 'easeInOut' }}
             className="absolute inset-0"
           >
-            <Image
+            <WebPImage
               src={phoneScreens[currentIndex]}
               alt={`Screen ${currentIndex + 1}`}
               fill
@@ -385,7 +385,7 @@ function PhoneScreen({
 //       className="relative z-20 pointer-events-none"
 //       style={{ width: `${phoneSize.width}px`, height: `${phoneSize.height}px` }}
 //     >
-//       <Image
+//       <WebPImage
 //         src="/Design/productionReady-card/image2.png"
 //         alt="Phone"
 //         fill
@@ -413,7 +413,7 @@ function PhoneScreen({
 //           transition={{ duration: 0.5 }}
 //           className="absolute inset-0"
 //         >
-//           <Image
+//           <WebPImage
 //             src={phoneScreens[currentIndex]}
 //             alt={`screen-${currentIndex}`}
 //             fill
@@ -455,7 +455,7 @@ function SideScreen({
       }}
       onClick={onClick}
     >
-      <Image src={src} alt={alt} fill className="object-cover" />
+      <WebPImage src={src} alt={alt} fill className="object-cover" />
     </motion.div>
   );
 }

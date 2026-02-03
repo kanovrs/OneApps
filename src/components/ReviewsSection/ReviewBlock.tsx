@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import './floating.css';
 
 interface ReviewBlockProps {
@@ -28,7 +28,7 @@ export default function ReviewBlock({
         <div className="flex-shrink-0">
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center overflow-hidden border border-gray-200">
             {avatarUrl ? (
-              <Image
+              <WebPImage
                 src={avatarUrl}
                 alt={`${username} avatar`}
                 width={40}
@@ -53,7 +53,7 @@ export default function ReviewBlock({
               <span className="text-bg-black font-semibold text-xs">
                 {rating.toFixed(1)}
               </span>
-              <Image
+              <WebPImage
                 src="/Design/review-card/raiting-star.svg"
                 alt="rating star"
                 width={12}

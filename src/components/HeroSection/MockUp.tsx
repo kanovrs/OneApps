@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 
 export default function MockUp() {
   return (
@@ -25,7 +25,7 @@ export default function MockUp() {
       {/* Телефон */}
       <div className="relative w-[145px] z-10">
         <div className="transition-all duration-700 ease-in-out group-hover:-rotate-[-8deg]">
-          <Image
+          <WebPImage
             src="/Design/MockUp/phone.png"
             width={150}
             height={300}
@@ -40,7 +40,7 @@ export default function MockUp() {
           <div className="relative w-[90px] h-[150px] group">
             {/* Банан снизу (под карточкой, сдвигается влево при ховере) */}
             <div className="absolute -bottom-[30px] left-1/3 -translate-x-1/2 w-[50px] h-[50px] rotate-[100deg] z-0 pointer-events-none transition-transform duration-500 ease-in-out group-hover:-translate-x-[50px]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/banana.png"
                 alt="banana-under"
                 fill
@@ -50,7 +50,7 @@ export default function MockUp() {
 
             {/* Карточка (вращается и сдвигается независимо) */}
             <div className="relative z-10 transition-all duration-700 ease-in-out group-hover:-rotate-[10deg] group-hover:-translate-x-[12px]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/card1.png"
                 width={90}
                 height={150}
@@ -61,7 +61,7 @@ export default function MockUp() {
 
             {/* Банан над карточки */}
             <div className="absolute -top-[35px] left-[35px] -translate-x-1/2 rotate-[80deg] w-[40px] h-[40px] z-20 pointer-events-none transition-transform duration-500 ease-in-out group-hover:scale-[2] group-hover:-translate-y-[20px] ">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/banana.png"
                 alt="banana-top"
                 fill
@@ -71,7 +71,7 @@ export default function MockUp() {
 
             {/* Декор (всегда поверх карточки) */}
             <div className="absolute z-30 pointer-events-none w-[94px] h-[94px] right-8 top-0 transition-all duration-1000 ease-in-out group-hover:translate-x-[-20px] group-hover:translate-y-[-10px]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/bg-item.png"
                 alt="bg-item"
                 unoptimized
@@ -81,7 +81,7 @@ export default function MockUp() {
             </div>
 
             <div className="absolute z-50 pointer-events-none w-[43px] h-[43px] right-[-20px] bottom-[-5px] rotate-[90deg] transition-all duration-300 ease-in-out group-hover:scale-[2]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/bg-item.png"
                 alt="bg-item"
                 unoptimized
@@ -93,7 +93,7 @@ export default function MockUp() {
 
           {/* Средняя (card2) с гориллой */}
           <div className="relative w-[90px] h-[150px] transition-all duration-700 ease-in-out z-20 overflow-visible">
-            <Image
+            <WebPImage
               src="/Design/MockUp/card2.png"
               width={90}
               height={150}
@@ -102,7 +102,7 @@ export default function MockUp() {
             />
 
             <div className="absolute bottom-[15px] left-[65px] -translate-x-1/2 w-[140px] h-[110px] z-20 pointer-events-none overflow-visible">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/gorilaz.png"
                 alt="gorilaz"
                 fill
@@ -110,7 +110,7 @@ export default function MockUp() {
               />
             </div>
             <div className="absolute z-30 pointer-events-none w-[50px] h-[50px] blur-[1px] right-[-50px] bottom-[-10px] transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/bg-item2.png"
                 alt="bg-item"
                 unoptimized
@@ -124,7 +124,7 @@ export default function MockUp() {
           <div className="relative w-[90px] h-[150px] transition-all duration-700 ease-in-out group-hover:rotate-[10deg] group-hover:translate-x-[12px] ">
             {/* Банан снизу (под карточкой, выезжает при ховере) */}
             <div className="absolute -bottom-[-10px] left-1/2 -translate-x-1/2 w-[50px] h-[50px] z-0 pointer-events-none transition-all duration-700 ease-in-out group-hover:translate-y-[40px] rotate-[40deg]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/banana.png"
                 alt="banana-under"
                 fill
@@ -133,7 +133,7 @@ export default function MockUp() {
             </div>
 
             {/* Карточка */}
-            <Image
+            <WebPImage
               src="/Design/MockUp/card3.png"
               width={90}
               height={150}
@@ -143,7 +143,7 @@ export default function MockUp() {
 
             {/* Банан над карточки */}
             <div className="absolute -top-[10px] left-full -translate-x-1/2 w-[60px] h-[60px] z-20 pointer-events-none transition-all duration-700 ease-in-out group-hover:scale-[2] group-hover:translate-y-[-20px]">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/banana.png"
                 alt="banana-top"
                 fill
@@ -153,7 +153,7 @@ export default function MockUp() {
 
             {/* Декор поверх карточки */}
             <div className="absolute z-30 pointer-events-none w-[94px] h-[94px] right-[-43px] top-0">
-              <Image
+              <WebPImage
                 src="/Design/MockUp/bg-item2.png"
                 alt="bg-item"
                 unoptimized

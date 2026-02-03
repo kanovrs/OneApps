@@ -1,5 +1,5 @@
 'use client';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
@@ -114,7 +114,7 @@ export default function ScreensLoop({ images, speed = 3000 }: Props) {
           }}
         >
           <div className="absolute inset-0">
-            <Image
+            <WebPImage
               src={images[imgIdx]}
               alt={`screen-${imgIdx}`}
               fill

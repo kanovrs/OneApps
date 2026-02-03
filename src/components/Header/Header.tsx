@@ -1,12 +1,12 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 
 export default function Header() {
   return (
     <header className="flex justify-between bg-[url('/Design/head-grid.png')] bg-cover py-[16px] items-center">
       <div className="logo">
         <Link href="/">
-          <Image src="/Logo/logo.png" width={64} height={64} alt="logotype" />
+          <WebPImage src="/Logo/logo.png" width={64} height={64} alt="logotype" />
         </Link>
       </div>
 
@@ -28,7 +28,7 @@ export default function Header() {
           </div>
 
           <div className="transition-colors duration-300 group-hover:text-primary-yellow">
-            <Image
+            <WebPImage
               src="/Design/arrow-right.svg"
               width={16}
               height={16}

@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import AccordionItem from './AccordionItem';
 
 interface Item {
@@ -32,7 +32,7 @@ export default function SectionContent({
       <h3 className="text-[28px] font-semibold text-white mb-4">
         {section.title}
       </h3>
-      <Image
+      <WebPImage
         src={section.image}
         alt="illustration"
         width={675}
@@ -91,7 +91,7 @@ export default function SectionContent({
                     : 'opacity-0 scale-105 absolute top-0'
                 }`}
               >
-                <Image
+                <WebPImage
                   src={section.image}
                   alt="illustration"
                   width={675}

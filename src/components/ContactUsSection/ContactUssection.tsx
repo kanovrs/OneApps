@@ -1,6 +1,6 @@
 "use client";
 import { useState, ChangeEvent } from "react";
-import Image from "next/image";
+import WebPImage from "@/components/WebPImage";
 import Tag from "../Tag";
 import Button from "../Button/Button";
 import { useIsMobile } from "@/hooks/useIsMobile";
@@ -156,14 +156,14 @@ export default function ContactUsSection() {
               }}
             >
               <div className="relative flex items-center justify-center w-16 h-16 bg-bg-black80 group-hover:bg-[#F9FF00] group-hover:shadow-[0px_7px_15px_0px_#00000040,8px_8px_15px_0px_#C9CD0880_inset] rounded-lg p-4 transition-all duration-300">
-                <Image
+                <WebPImage
                   src="/Design/telegramIcon.svg"
                   alt="Telegram"
                   width={24}
                   height={24}
                   className="opacity-100 group-hover:opacity-0 transition-all duration-300"
                 />
-                <Image
+                <WebPImage
                   src="/Design/telegramIcon-black.svg"
                   alt="Telegram"
                   width={24}
@@ -184,7 +184,7 @@ export default function ContactUsSection() {
         </div>
 
         <div className="w-full mt-[53px]">
-          <Image
+          <WebPImage
             src={
               isMobile
                 ? "/Design/Grid-bottom-mob.svg"

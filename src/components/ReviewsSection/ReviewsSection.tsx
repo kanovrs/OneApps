@@ -2,7 +2,7 @@
 import Tag from '../Tag';
 import ReviewsList from './ReviewsList';
 import ReviewBlock from './ReviewBlock';
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { mobileReviews } from './reviews-data';
 
 export default function ReviewsSection() {
@@ -49,7 +49,7 @@ export default function ReviewsSection() {
 
       <div className="block md:hidden relative pb-8 w-full">
         <div className="relative z-10 flex justify-center py-4 -mt-16 mb-8 w-full">
-          <Image
+          <WebPImage
             src="/Design/review-card/review-phone.svg"
             alt="Android Phone Mockup"
             width={200}

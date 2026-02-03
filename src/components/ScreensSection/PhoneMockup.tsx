@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import WebPImage from '@/components/WebPImage';
 import { motion, useTransform, MotionValue } from 'framer-motion';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
@@ -32,7 +32,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
           height: '655px',
         }}
       >
-        <Image
+        <WebPImage
           src={'/screens/phone.png'}
           alt="PhoneMockup"
           fill
@@ -66,7 +66,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
             }}
           >
             <div className={`absolute inset-0 overflow-hidden ${isMobile ? '' : 'rounded-[10px]'}`} style={isMobile ? { borderRadius: '4px' } : {}}>
-              <Image
+              <WebPImage
                 src={'/screens/phone1.png'}
                 alt={`screen 1`}
                 fill
@@ -88,7 +88,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
                 left: '-20px',
               }}
             >
-              <Image
+              <WebPImage
                 src={'/screens/drago.png'}
                 alt={`screen 1`}
                 fill
@@ -112,7 +112,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               }}
               className="absolute bottom-0 z-20"
             >
-              <Image
+              <WebPImage
                 src={'/screens/drago-gold.png'}
                 alt={`screen 1`}
                 fill
@@ -136,7 +136,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
                 '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
-            <Image
+            <WebPImage
               src={'/screens/phone2.png'}
               alt={`screen 2`}
               fill
@@ -162,7 +162,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
                 '0px 0px 20px 22px rgba(0, 0, 0, 0.25), 0px 0px 20px 0px rgba(0, 0, 0, 1)',
             }}
           >
-            <Image
+            <WebPImage
               src={'/screens/phone3.png'}
               alt={`screen 3`}
               fill
@@ -194,7 +194,7 @@ export default function PhoneMockup({ scrollProgress }: Props) {
               height: '300px',
             }}
           >
-            <Image
+            <WebPImage
               src="/screens/fire.png"
               alt="Fire"
               fill
