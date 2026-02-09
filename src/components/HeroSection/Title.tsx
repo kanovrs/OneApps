@@ -2,7 +2,7 @@ export default function Title() {
   return (
     <h1 className="w-[860px]">
       {" "}
-      <span className="sr-only">One Apps</span>
+      {/* <span className="sr-only">One Apps</span> */}
       <svg
         viewBox="0 0 860 250"
         width="100%"

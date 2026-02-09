@@ -10,7 +10,7 @@ export default function WebPImage(props: ImageProps) {
 
   if (webpSrc) {
     return (
-      <picture>
+      <picture suppressHydrationWarning>
         <source srcSet={webpSrc} type="image/webp" />
         <Image {...props} />
       </picture>
