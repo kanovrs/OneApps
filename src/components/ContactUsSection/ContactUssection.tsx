@@ -9,26 +9,7 @@ export default function ContactUsSection() {
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
   const isMobile = useIsMobile();
-
-  // // Функція маски, яка не ламає видалення (Backspace)
-  // const formatPhone = (value: string) => {
-  //   const digits = value.replace(/\D/g, ""); // тільки цифри
-  //   if (!digits) return "";
-
-  //   // Формуємо маску +38 (0XX) XXX XX XX
-  //   let res = "+38 (0";
-  //   const mainPart = digits.startsWith("380")
-  //     ? digits.slice(3)
-  //     : digits.slice(1);
-
-  //   for (let i = 0; i < mainPart.length && i < 9; i++) {
-  //     if (i === 2) res += ") ";
-  //     if (i === 5) res += " ";
-  //     if (i === 7) res += " ";
-  //     res += mainPart[i];
-  //   }
-  //   return res;
-  // };
+  const [success, setSuccess] = useState("");
 
   const handlePhoneChange = (e: ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
@@ -47,7 +28,7 @@ export default function ContactUsSection() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://91.247.36.48:3014/api/forms/submit", {
+      const res = await fetch("/api/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -64,9 +45,15 @@ export default function ContactUsSection() {
       // при успехе
       setPhone("");
       setError("");
-      console.log("Успішно відправлено");
+      setSuccess("Дякуємо! Ми звʼяжемося з вами найближчим часом.");
+
+      // авто-скрытие через 4 сек
+      setTimeout(() => {
+        setSuccess("");
+      }, 4000);
     } catch (err) {
       console.error(err);
+      setSuccess("");
       setError("Не вдалося відправити номер. Спробуйте пізніше.");
     }
   };
@@ -121,11 +108,17 @@ export default function ContactUsSection() {
                 />
                 <Button />
               </div>
-
-              {/* Повідомлення про помилку під лінією */}
+              {/* Error */}
               {error && (
                 <span className="text-red-500 text-sm mt-2 absolute translate-y-12">
                   {error}
+                </span>
+              )}
+
+              {/* Success */}
+              {success && (
+                <span className="text-[#9EFF00] text-sm mt-2 absolute translate-y-12">
+                  {success}
                 </span>
               )}
             </form>

@@ -34,7 +34,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center md:justify-between items-start gap-8 mt-[64px] md:mt-[120px]">
+      <div className="flex flex-col md:flex-row justify-center md:justify-between items-start gap-8 mt-[64px] md:mt-[120px] max-md:gap-[64px]">
         <div className="w-full md:w-1/3 flex justify-center md:justify-start">
           <a
             href="https://t.me/oneapps_sales"
